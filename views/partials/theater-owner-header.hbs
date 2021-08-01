@@ -2,10 +2,10 @@
  {{#if hidePartial}}
  {{else}}
  <!-- sidebar menu start -->
-  <div class="sidebar-menu sticky-sidebar-menu">
+  <div style="top: 0; height: 100%;" class="sidebar-menu sticky-sidebar-menu">
     <!-- logo start -->
     <div class="logo">
-      <h1><a href="index.html">Collective</a></h1>
+      <h1><a href="/theater-management">{{theaterDetails.Theater_name}}</a></h1>
     </div>
 
   <!-- if logo is image enable this -->
@@ -26,36 +26,63 @@
 
       <!-- sidebar nav start -->
       <ul class="nav nav-pills nav-stacked custom-nav">
-        <li class="active"><a href="index.html"><i class="fa fa-tachometer"></i><span> Dashboard</span></a>
+        <li class="active"><a href="/theater-management"><i class="fa fa-tachometer"></i><span> Dashboard</span></a>
         </li>
-        <li class="menu-list">
-          <a href="#"><i class="fa fa-cogs"></i>
-            <span>Elements <i class="lnr lnr-chevron-right"></i></span></a>
-          <ul class="sub-menu-list">
-            <li><a href="carousels.html">Carousels</a> </li>
-            <li><a href="cards.html">Default cards</a> </li>
-            <li><a href="people.html">People cards</a></li>
-          </ul>
+        <li class="menu-ldist">
+          <a href="/theater-management/show-management"><i class="fa fa-cogs"></i>
+            <span>Show management</span></a>
         </li>
         <li class="menu-list"><a href="#"><i class="fa fa-book"></i>
-            <span>More pages <i class="lnr lnr-chevron-right"></i></span></a>
-          <ul class="sub-menu-list">
-            <li><a href="timeline.html">Timeline</a></li>
-            <li><a href="error.html">404</a></li>
-            <li><a href="blank-page.html">Blank Page</a></li>
+            <span>Movie management <i class="lnr lnr-chevron-right"></i></span></a>
+          <ul class="sub-menu-list">  
+            <li><a href="/theater-management/all-movies">All Movies</a></li>
+            <li><a href="/theater-management/add-movies">Add movies</a></li>
+             <li><a href="/theater-management/">Upload Movies</a></li>
+            <li><a href="/theater-management/">Uploaded movies</a></li>
           </ul>
         </li>
-        <li><a href="charts.html"><i class="fa fa-pie-chart"></i> <span>Charts</span> <label
+
+        <li class="menu-list"><a href="#"><i class="fa fa-table"></i>
+            <span>Seat management <i class="lnr lnr-chevron-right"></i></span></a>
+          <ul class="sub-menu-list">  
+            <li><a href="">Screen-1</a></li>
+            <li><a href="">screen-2</a></li>
+          </ul>
+        </li>
+
+
+        {{!-- <li><a href="charts.html"><i class="fa fa-pie-chart"></i> <span>Charts</span> <label
               class="label label-primary"> new</label></a></li>
-        <li><a href="pricing.html"><i class="fa fa-table"></i> <span>Pricing tables</span></a></li>
+        <li><a href="pricing.html"><i class="fa fa-table"></i> <span>Pricing tables</span></a></li> --}}
         <li class="menu-list"><a href="#"><i class="fa fa-envelope"></i>
-            <span>Mailbox <i class="lnr lnr-chevron-right"></i></span></a>
+            <span>Theater management <i class="lnr lnr-chevron-right"></i></span></a>
           <ul class="sub-menu-list">
-            <li><a href="inbox.html">Inbox</a> </li>
-            <li><a href="#compose-mail.html">Compose Mail</a></li>
+            <li><a href="">Add screen</a> </li>
+            <li><a href="">Edit screen</a></li>
+            <li><a href="">Add shows</a> </li>
+            <li><a href="">Edit shows</a></li>
           </ul>
         </li>
-        <li><a href="blocks.html"><i class="fa fa-th"></i> <span>Content blocks</span></a></li>
+         <li class="menu-list"><a href="#"><i class="fa fa-th"></i>
+            <span>Offline management <i class="lnr lnr-chevron-right"></i></span></a>
+          <ul class="sub-menu-list">
+            <li><a href="">Add screen</a> </li>
+            <li><a href="">Edit screen</a></li>
+            <li><a href="">Add shows</a> </li>
+            <li><a href="">Edit shows</a></li>
+          </ul>
+        </li>
+         <li class="menu-list"><a href="#"><i class="fa fa-question-circle"></i>
+            <span>Browse Movie <i class="lnr lnr-chevron-right"></i></span></a>
+          <ul class="sub-menu-list">
+            {{!-- <li><a href="">Add screen</a> </li>
+            <li><a href="">Edit screen</a></li>
+            <li><a href="">Add shows</a> </li>
+            <li><a href="">Edit shows</a></li> --}}
+          </ul>
+        </li>
+        
+        {{!-- <li><a href=""><i class="fa fa-th"></i> <span></span></a></li>
         <li><a href="faq.html"><i class="fa fa-question-circle"></i> <span>Faq's</span></a></li>
         <li class="menu-list"><a href="#"><i class="fa fa-user"></i>
             <span>User <i class="lnr lnr-chevron-right"></i></span></a>
@@ -65,7 +92,7 @@
             <li><a href="forgot-password.html">Forgot Password</a></li>
           </ul>
         </li>
-        <li><a href="forms.html"><i class="fa fa-file-text"></i> <span>Forms</span></a></li>
+        <li><a href="forms.html"><i class="fa fa-file-text"></i> <span>Forms</span></a></li> --}}
       </ul>
       <!-- //sidebar nav end -->
       <!-- toggle button start -->
@@ -78,7 +105,7 @@
   </div>
   <!-- //sidebar menu end -->
   <!-- header-starts -->
-  <div class="header sticky-header">
+  <div style="top: 0;" class="header sticky-header">
 
     <!-- notification menu start -->
     <div class="menu-right">
@@ -90,7 +117,7 @@
           </form>
         </div>
         <div class="user-dropdown-details d-flex">
-          <div class="profile_details_left">
+          {{!-- <div class="profile_details_left">
             <ul class="nofitications-dropdown">
               <li class="dropdown">
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false"><i
@@ -174,7 +201,7 @@
                 </ul>
               </li>
             </ul>
-          </div>
+          </div> --}}
           <div class="profile_details">
             <ul>
               <li class="dropdown profile_details_drop">
@@ -189,10 +216,10 @@
                 </a>
                 <ul class="dropdown-menu drp-mnu" aria-labelledby="dropdownMenu3">
                   <li class="user-info">
-                    <h5 class="user-name">John Deo</h5>
-                    <span class="status ml-2">Available</span>
+                    <h5 class="user-name">{{theaterDetails.Owner_name}}</h5>
+                    
                   </li>
-                  <li> <a href="#"><i class="lnr lnr-user"></i>My Profile</a> </li>
+                  <li> <a href="/theater-management/profile"><i class="lnr lnr-user"></i>My Profile</a> </li>
                   <li> <a href="#"><i class="lnr lnr-users"></i>1k Followers</a> </li>
                   <li> <a href="#"><i class="lnr lnr-cog"></i>Setting</a> </li>
                   <li> <a href="#"><i class="lnr lnr-heart"></i>100 Likes</a> </li>

@@ -14,7 +14,7 @@ const theaterLoginHelper = (req, res, next) => {
 
 /* GET theater_owner home page. */
 router.get('/', theaterLoginHelper, function (req, res, next) {
-  res.render('theater/dashboard', { theater_owner: true })
+  res.render('theater/dashboard', { theater_owner: true ,'theaterDetails':req.session.theaterDetails })
 });
 
 router.get('/sign-up', (req, res) => {
@@ -145,6 +145,11 @@ router.post('/otp-login-verify', (req, res) => {
 router.get('/logout', (req, res) => {
   req.session.theaterStatus = false
   res.redirect('/theater-management')
+})
+// profile 
+router.get('/profile',(req,res)=>{
+  res.render('theater/profile',{    theater_owner: true,
+    })
 })
 
 // router.get('/help',(req,res)=>{

@@ -81,7 +81,7 @@ module.exports = {
     },
     theaterOtpLogin:(data)=>{
         return new Promise(async(resolve,reject)=>{ 
-            var response = await db.get().collection(collections.THEATER_COLLECTION).findOne(data) 
+            var response = await db.get().collection(collections.THEATER_COLLECTION).findOne({Phone:data}) 
             if(response){
                 response.Status = true
                 resolve(response)
