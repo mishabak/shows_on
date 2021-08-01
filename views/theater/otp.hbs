@@ -1,0 +1,29 @@
+<style>
+    .error{
+        min-height: 0%;
+    }
+</style>
+<section class="login-form py-md-5 py-3">
+            <div class="card card_border p-md-4">
+                <div class="card-body">
+                    <!-- form -->
+                    <form id="Theater-owner-login" action="/theater-management/otp" method="POST">
+                        <div class="login__header text-center mb-lg-5 mb-4">
+                            <h3 class="login__title mb-2"> OTP </h3>
+                            <p>verify and  continue</p>
+                        </div>
+                        <div class="form-group">
+                            <label for="exampleInputEmail1" class="input__label">Enter your otp</label>
+                            <input name="Otp_verify"  type="text" class="form-control login_text_field_bg input-style"
+                                 >
+                        </div>
+                        
+                        <div class="d-flex align-items-center flex-wrap justify-content-between">
+                            <button type="submit" class="btn btn-primary btn-style mt-4">verify</button>
+                            
+                        </div>
+                    </form>
+                    <!-- //form -->
+                </div>
+            </div>
+        </section>

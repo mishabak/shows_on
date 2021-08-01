@@ -1,0 +1,74 @@
+$(document).ready(()=>{
+    $('#super-admin-login').validate({
+        rules:{
+            Email:{
+                required:true,
+                email:true
+            },
+            Password:{
+                required:true,
+                minlength:8
+            }
+        },
+        messages:{
+            Email:{
+                required:'Please enter your email'
+            },
+            Password:{
+                required:'Please enter your password'
+            }
+        }
+    })
+
+
+    $('#theater-owner-signup').validate({
+        rules:{
+            Owner_name:{
+                required:true,
+                minlength:4,
+            },
+            Theater_name:{
+                required:true,  
+            },
+            Email:{
+                required:true,
+                email:true
+            },
+            phone:{
+                required:true,
+                minlength:10,
+                maxlength:10
+            },
+            Password:{
+                required:true,
+                minlength:8
+            },
+            Terms_of_service:{
+                required:true,        
+            }
+        }
+    })
+
+    $('#Theater-owner-emailLogin').validate({
+        rules:{
+            Email:{
+                required:true,
+                email:true
+            },
+            Password:{
+                required:true,
+                minlength:8,
+            }
+        }
+    })
+
+    $('#theater-owner-otpLogin').validate({
+        rules:{
+            phone:{
+                required:true,
+                minlength:10,
+                maxlength:10
+            }
+        }
+    })
+})

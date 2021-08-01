@@ -1,0 +1,106 @@
+<style>
+    .error {
+        min-height: 0%;
+    }
+</style>
+<section class="register-form py-md-5 py-3">
+    <div class="card card_border p-md-4">
+        <div class="card-body">
+            <!-- form -->
+            <form id="theater-owner-signup" action="/theater-management/sign-up" method="POST">
+                <div class="register__header text-center mb-lg-5 mb-4">
+                    <h3 class="register__title mb-2"> Signup</h3>
+                    <p>Create your account here, and continue </p>
+                    {{#if invalidOtp}}
+                    <p>OTP Verification failed please try again</p>
+                    {{/if}}
+                </div>
+                <div class="row">
+                    <div class="col-md-6">
+
+
+
+                        <div class="form-group">
+                            <label for="exampleInputName" class="input__label">Your Name</label>
+                            <input name="Owner_name" type="text" class="form-control login_text_field_bg input-style"
+                                id="exampleInputName">
+                                {{#if theaterOwnerName}}
+                                <p> This name is already used</p>
+                                {{/if}}
+                        </div>
+                        <div class="form-group">
+                            <label for="exampleInputName" c lass="input__label">Theater name</label>
+                            <input name="Theater_name" type="text" class="form-control login_text_field_bg input-style"
+                                id="exampleInputTheater">
+                                {{#if theaterName}}
+                                <p> this theater name is already used</p>
+                                {{/if}}
+                        </div>
+                        <div class="form-group">
+                            <label for="exampleInputEmail1" class="input__label">Email address</label>
+                            <input name="Email" type="email" class="form-control login_text_field_bg input-style"
+                                id="exampleInputEmail1">
+                                 {{#if theaterEmail}}
+                                <p> this email is already used</p>
+                                {{/if}}
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+
+
+                        <div class="form-group">
+                            {{#if invalidCountryCode}}
+                            <p style="color: rgb(170, 13, 13);">invalid country code </p>
+                            {{/if}}
+                            <div>
+                                <label for="exampleInputPassword1" class="input__label">Phone</label>
+                            </div>
+
+                            <input style="padding-right: 131px; -moz-appearance: textfield;" name="phone" type="number"
+                                class="form-control login_text_field_bg input-style" id="phone">
+                                 {{#if theaterPhone}}
+                                <p> this Number is already used</p>
+                                {{/if}}
+                                
+                            {{!-- contry code add into the input --}}
+                            <input id="phone-number" name="Phone" type="text" style="display: none;" value="">
+                        </div>
+                        <div class="form-group">
+                            <label for="exampleInputPassword1" class="input__label">Password</label>
+                            <input name="Password" type="password" class="form-control login_text_field_bg input-style"
+                                id="exampleInputPassword1">
+                        </div>
+                        <div style="margin-top: 48px;" class="form-check check-remember check-me-out">
+                            <input name="Terms_of_service" type="checkbox" class="form-check-input checkbox"
+                                id="exampleCheck1">
+                            <label class="form-check-label checkmark" for="exampleCheck1">I agree to the
+                                Terms of service and Privacy policy </label>
+                            <label style="display: none; color: black;" id="Terms_of_service-error" class="error"
+                                for="Terms_of_service">This field is required.</label>
+                        </div>
+                        <div class="d-flex align-items-center flex-wrap justify-content-between">
+                            <button id="submit" type="submit" class="btn btn-primary btn-style mt-4">Create
+                                Account</button>
+                            <p class="signup mt-4">Already have an account? <a href="/theater-management/email-login"
+                                    class="signuplink">Login </a>
+                            </p>
+                        </div>
+                        {{!-- admin verification for access the account and block the theater owner--}}
+                        <input style="display:none" name="Confirm" type="text" value="confirm">
+                        <input style="display:none" name="Block" type="text" value="block">
+                    </div>
+                </div>
+            </form>
+            <!-- //form -->
+
+        </div>
+    </div>
+</section>
+<script>
+
+    $(document).ready(() => {
+        $('#submit').click(() => {
+            document.getElementById('phone-number').value = phoneInput.getNumber()
+        })
+    })
+</script>

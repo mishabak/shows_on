@@ -1,0 +1,46 @@
+<style>
+    .error{
+        min-height: 0%;
+    }
+</style>
+<section class="login-form py-md-5 py-3">
+            <div class="card card_border p-md-4">
+                <div class="card-body">
+                    <!-- form -->
+                    <form id="theater-owner-otpLogin" action="/theater-management/otp-login" method="POST">
+                        <div class="login__header text-center mb-lg-5 mb-4">
+                            <h3 class="login__title mb-2"> Login</h3>
+                            <p>Welcome back, login to continue</p>
+                        </div>
+                        <div class="form-group">
+                            {{#if theaterOwnerInvalidPhone}}
+                            <p style="color: rgb(155, 28, 28);">Invalid Phone number</p>
+                            {{/if}}
+                            <label for="exampleInputEmail1" class="input__label">Phone</label>
+                            <input style="padding-right: 131px; -moz-appearance: textfield;" name="phone" type="number"
+                                class="form-control login_text_field_bg input-style" id="phone">
+                                <input type="text" id="phone-number" style="display: none;" value="" name="Phone">
+                        </div>
+                        <div class="d-flex align-items-center flex-wrap justify-content-between">
+                            <button id="submit" type="submit" class="btn btn-primary btn-style mt-4">Login now</button>
+                            <p class="signup mt-4">Don’t have an account? <a href="/theater-management/sign-up"
+                                    class="signuplink">Sign
+                                    up</a></p>
+                        </div>
+                        <p  class=" signup mt-4">Login with <a href="/theater-management/email-login"
+                                    class="signuplink">Email
+                                    </a></p>
+                    </form>
+                    <!-- //form -->
+                </div>
+            </div>
+        </section>
+
+        <script>
+
+    $(document).ready(() => {
+        $('#submit').click(() => {
+            document.getElementById('phone-number').value = phoneInput.getNumber()
+        })
+    })
+</script>

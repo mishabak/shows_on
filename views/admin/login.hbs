@@ -1,0 +1,30 @@
+<link rel="stylesheet" href="/css/login.css">
+<div id="page-wrapper">
+	<div class="main-page login-page ">
+		<h3 class="title1">SignIn Page</h3>
+		<div class="widget-shadow">
+			<div class="login-top">
+				<h4>Welcome back </h4>
+			</div>
+			<div class="login-body">
+				<form id="super-admin-login" action="/admin/login" method="POST">
+				{{#if loginError}}
+					<label for="">Invalid username or password</label>
+					{{/if}}
+					<input type="text" class="user" name="Email" placeholder="Enter your email" required="">
+					<input type="password" name="Password" class="lock" placeholder="password">
+					
+					<input type="submit"  value="Sign In">
+					<div class="forgot-grid">
+						<div class="clearfix"> </div>
+					</div>
+				</form>
+			</div>
+		</div>
+		<div class="login-page-bottom">
+			<h5> </h5>
+			<div class="social-btn"></div>
+			<div class="social-btn sb-two"></div>
+		</div>
+	</div>
+</div>
