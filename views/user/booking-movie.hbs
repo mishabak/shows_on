@@ -1,0 +1,106 @@
+<style>
+    h6 {
+        font-size: 4vw;
+    }
+
+    @media screen and (min-width: 564px) {
+        h6 {
+            font-size: 20px;
+        }
+    }
+
+    .btn {
+        font-size: 4vw;
+    }
+
+    @media screen and (min-width: 475px) {
+        .btn {
+            font-size: 18px;
+        }
+    }
+
+    @media screen and (min-width: 576px) {
+        .btn {
+            font-size: 12px;
+        }
+    }
+</style>
+
+<section style="margin-top:90px; margin-bottom:50px; padding-left: 15px; padding-right: 15px; height: 350px;">
+    <div
+        style="border: solid 2px rgb(202, 202, 202); padding:3px; height: 370px; overflow-y: auto; position: relative; background: rgba(142, 127, 98, 0.32)">
+
+        {{!-- <img style="position: absolute; width: 100% ; height: 100%; "
+            src="/movieImages/610fa819267af704a8863db9Cover_photo.jpg" alt=""> --}}
+        {{#if availableShows}}
+        {{#each availableShows}}
+        <div style="  box-shadow: 0px 0px 3px 1.5px rgb(191, 191, 191); margin: 2px; margin-top: 20px; background: rgb(235, 235, 235);"
+            class="row">
+            <div style="display: flex;align-items: center; justify-content: center;" class="col-12 col-md-4">
+                <h6 style="color: #17a2b8; padding: 5px;"> <span style="text-transform: uppercase;">{{this.theater.Theater_name}}</span>
+                    <span style="text-transform: capitalize; ">{{this.Screen}}</span>
+                    <span><input class="date" id="{{this._id}}" onchange="chooseDate(this,'{{this._id}}')"
+                            style="margin: 2px; border: none; font-size: 14px; box-shadow: 0px 0px 2px 1.1px #17a2b8;background: #17a2b8;color: white;border-radius: 0px;" type="date"></span>
+                </h6>
+            </div>
+            <input class="expDate" style="display: none;" type="text" value="{{this.expDate}}">
+            <div class="col-12 col-md-8">
+                <div class="row ">
+                    {{!-- for show time --}}
+                    {{#each shows}}
+                    <div style="width: 100%; display: flex; justify-content: center;" class="col-6 col-sm-3  ">
+                        <button onclick="viewSeatArrangement('{{this._id}}','{{../this._id}}')"
+                            style="width: 100%; margin-top: 3px; margin-bottom: 3px;"
+                            class="btn btn-info ">{{this.Show}}</button>
+                    </div>
+                    {{/each}}
+                </div>
+            </div>
+        </div>
+        {{/each}}
+        {{else}}
+        <h3 style="display: flex; justify-content: center; height: 100%; align-items: center; color: rgb(31, 31, 31);">No theaters available</h3>
+        {{/if}}
+    </div>
+</section>
+
+<script>
+    // for prevent before date
+
+    $(function () {
+        var date = document.getElementsByClassName('date')
+        var manageDate = null
+        //arrange new date format 
+            var dtToday = new Date();
+            var month = dtToday.getMonth() + 1;
+            var day = dtToday.getDate();
+            var year = dtToday.getFullYear();
+            if (month < 10)
+                month = '0' + month.toString();
+            if (day < 10)
+                day = '0' + day.toString();
+            var minDate = year + '-' + month + '-' + day;
+        // set max and min size of date chart
+        for (var i = 0; i < date.length; i++) {
+            manageDate = document.getElementsByClassName('date')[i].id
+            var maxDate = document.getElementsByClassName('expDate')[i].value
+            document.getElementById(manageDate).setAttribute('min', minDate)
+            document.getElementById(manageDate).setAttribute('max', maxDate)
+        }
+    });
+    var choosedDate = null
+    var checkScreenId = null // for compare screen id for choose show
+    function chooseDate(date, screenId) {
+        choosedDate = date.value 
+        checkScreenId = screenId
+    }
+    function viewSeatArrangement(showId,screenId) {
+        if(choosedDate!==null && screenId === checkScreenId){
+            location.href = '/seat-arrangement/' + showId +'/'+choosedDate
+            choosedDate = null
+        }else{
+            alert('please choose a date')
+        }
+        
+    }
+</script>

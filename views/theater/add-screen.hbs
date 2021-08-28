@@ -1,0 +1,80 @@
+<div class="row">
+    <div class="col-12">
+        <section style="display: flex; justify-content: center;margin-top: 90px">
+            <div
+                style=" overflow-y: auto; border-radius: 6px; width:600px ; position: sticky; background-color: rgb(255, 255, 255); height: 300px; box-shadow: 0px 0px 5px 1px rgb(182, 182, 182);">
+                <div style="width: 600px; height: 40px; background: rgb(124, 124, 124); position: sticky;">
+                    <h2 style="text-align: center; color: white;">Available Screen</h2>
+                </div>
+                <div style="padding: 45px;">
+                    {{#each screen}}
+                    <div style="display: flex; flex-direction: row;">
+                        <h3 style="margin: 15px;">{{this.Screen}} </h3>
+                        <button class="btn btn-info text-light" onclick="addShows('{{this._id}}')"
+                            style="margin-top: 15px;margin-bottom: 15px; margin-left: auto;">Add shows</button>&nbsp;&nbsp;&nbsp;
+                        <button class="btn btn-danger text-light" onclick=" deleteScreen('{{this._id}}')"
+                            style="margin: 15px; margin-left: asuto; ">Delete</button>
+
+                    </div>
+                    <hr>
+                    {{/each}}
+
+                </div>
+            </div>
+            <div>
+
+            </div>
+        </section>
+    </div>
+    <div class="col-12">
+        <section style="display: flex; justify-content: center;margin-top: 30px">
+            <div
+                style=" overflow-y: auto; border-radius: 6px; width:600px ; position: fixed; background-color: rgb(255, 255, 255); height: 150px; box-shadow: 0px 0px 5px 1px rgb(182, 182, 182);">
+                <div style="width: 600px; height: 40px; background: rgb(124, 124, 124); position: fixed;">
+                    <h2 style="text-align: center; color: white;">Add Screen</h2>
+                </div>
+                <div style="margin-top: 45px; padding-left: 20px;padding-right: 20px; padding: 30px;">
+                    <form action="/theater-management/add-screen" method="POST" id="add-shows">
+                        <div class="row">
+                            <div class="col-8">
+                                <input type="text" class="form-control" required name="Screen" id="new-shows"
+                                    placeholder="Screen One">
+                            </div>
+                            <div class="col-4">
+                                <button type="submit" class="btn btn-info">Add Screen</button>
+                            </div>
+                            <input style="display: none;" type="text" name="theaterId" value="{{theaterDetails._id}}"
+                                id="">
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <div>
+
+            </div>
+        </section>
+    </div>
+</div>
+
+<script>
+    function deleteScreen(screenId){
+        var confirmation = confirm('do You want to delete the screen')
+        if(confirmation === true){
+        $.ajax({
+            url:'/theater-management/delete-screen',
+            method:'post',
+            data:{
+                screenId:screenId
+            },
+            success:(response)=>{
+                location.reload()
+            }
+        })
+        }
+    }
+
+ // for add show on the  screen by params 
+  function  addShows(screenId){
+      location.href = '/theater-management/add-shows/'+screenId
+  }
+</script>

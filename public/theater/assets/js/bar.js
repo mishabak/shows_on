@@ -1,3 +1,8 @@
+
+
+
+
+
 new Chart(document.getElementById("barchart"), {
 	type: 'bar',
 	data: {

@@ -1,0 +1,240 @@
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.5.11/cropper.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.5.11/cropper.js"></script>
+<style>
+    .form-control:focus {
+        box-shadow: none;
+        border-color: #BA68C8
+    }
+
+    .profile-button {
+        background: #BA68C8;
+        box-shadow:
+            none;
+        border: none
+    }
+
+    .profile-button:hover {
+        background: #682773
+    }
+
+    .profile-button:focus {
+        background: #682773;
+        box-shadow: none
+    }
+
+    .profile-button:active {
+        background: #682773;
+        box-shadow: none
+    }
+
+    .back:hover {
+        color: #682773;
+        cursor: pointer
+    }
+</style>
+
+<div style="margin-top: 70px; padding: 20px;" class="container rounded bg-white ">
+    <div style="background: #8c665482;" class="row ">
+        <div class="col-md-4 border-right">
+            <div class="d-flex flex-column align-items-center text-center justify-content-center p-3 ">
+                {{#if userDetails.userProfile}}
+                <img class="rounded-circle mt-5" src="/userProfileImage/{{userDetails._id}}.jpg" width="90" />
+                {{else}}
+                <img class="rounded-circle mt-5" src="https://i.imgur.com/0eg0aG0.jpg" width="90" />
+                {{/if}}
+                <span class="font-weight-bold text-light">{{userDetails.Name}}
+                </span><span class="text-light">{{userDetails.Email}}</span>
+                {{#if userDetails.userProfile}}
+                <button onclick="deleteProfile()" class="btn btn-danger m-2">Delete image</button>
+
+                {{/if}}
+
+                <form id="user-image-edit" action="/add-user-profile-photo" enctype="multipart/form-data" method="POST">
+                <div class="upload-btn-wrapper112">
+                    <button id="image11" type="button" class="btn112">Edit image</button>
+                    <input id="image1" onchange="return filevalidation()" type="file" name="User_profile" />
+                </div>
+                <div style=" display: none; width: 100%; height: 300px;" id="image-box"></div>
+                <button style="display: none;" class="btn btn-dark" type="button" id="crop-btn">crop</button>
+                <button style="display: none;" class="btn btn-info" type="submit" id="add">Save image</button>
+                </form>
+            </div>
+
+        </div>
+        <div class="col-md-8">
+            <div class="p-3 ">
+                {{!-- <div class="d-flex justify-content-between align-items-center mb-3">
+                    <div class="d-flex flex-row align-items-center back"><i class="fa fa-long-arrow-left mr-1 mb-1"></i>
+                        <h6>Back to home</h6>
+                    </div>
+                    <h6 class="text-right">Edit Profile</h6>
+                </div> --}}
+                <form id="edit-user-details" action="/profile" method="POST">
+                    <input type="text" style="display: none;" name="userId" value="{{userDetails._id}}" id="">
+                    <div class="row mt-2 justify-content-center">
+                        <div style="max-width: 500px;" class="col-md-12"> <label style="color: white;"
+                                for="">Name</label><input type="text" class="form-control" placeholder=" name"
+                                name="Name" value="{{userDetails.Name}}" /></div>
+                        <div style="max-width: 500px;" class="col-md-12"><label style="color: white;"
+                                for="">Email</label><input type="email" class="form-control" name="Email"
+                                value="{{userDetails.Email}}" placeholder="Email" /></div>
+                    </div>
+                    <div class="row mt-2 justify-content-center">
+                        <div style="max-width: 500px;" class="col-md-12 "><label style="color: white;"
+                                for="">Phone</label><input style="-moz-appearance: textfield;" type="number"
+                                class="form-control" placeholder="Phone" name="Phone" value="{{userDetails.Phone}}" />
+                        </div>
+
+                    </div>
+                    <div class="row mt-2 justify-content-center">
+                        <div class="mt-2 text-right"><button class="btn btn-info " type="submit">Save
+                                Change</button></div>
+                    </div>
+
+                </form>
+            </div>
+        </div>
+    </div>
+
+
+
+    <style>
+        /*profile image choose*/
+        .upload-btn-wrapper112 {
+            position: relative;
+            overflow: hidden;
+            display: inline-block;
+        }
+
+        .btn112 {
+            border: 2px solid gray;
+            color: gray;
+            background-color: white;
+            padding: 8px 20px;
+            border-radius: 8px;
+            font-size: 20px;
+            font-weight: bold;
+        }
+
+        .upload-btn-wrapper112 input[type=file] {
+            font-size: 100px;
+            position: absolute;
+            left: 0;
+            top: 0;
+            opacity: 0;
+        }
+    </style>
+
+</div>
+{{!-- <div
+    style=" margin-top: 80px; width: 100%; top: 0; height: 100%; display: flex;display: none; position: fixed; z-index: 96; justify-content: center;  background-color: rgba(16, 16, 16, 0.603);">
+    <div
+        style="min-width: 280px; width: 500px; height: 230px; background: rgb(232, 232, 232);margin: 10px; margin-top: 50px; border-radius: 12px; box-shadow: 0px 0px 3px 0.8px  rgb(202, 202, 202); ">
+        <span style=" float: right; margin-right: 10px; margin-top: 10;">&times;</span>
+
+        <button id="crop-btn"></button>
+        <button id="add"></button>
+
+    </div>
+</div> --}}
+
+<script>
+    function filevalidation() {
+        var fileInput =
+            document.getElementById('image1');
+        var filePath = fileInput.value;
+        // Allowing file type
+        var allowedExtensions =
+            /(\.jpg)$/i;
+        if (!allowedExtensions.exec(filePath)) {
+            alert('Please choose an jpg image file');
+            fileInput.value = '';
+            return false;
+        }
+        else {
+            document.getElementById('add').style.display = 'none'
+            document.getElementById('image1').style.display = 'none'
+            document.getElementsByClassName('upload-btn-wrapper112')[0].style.display = 'none'
+
+
+            // image-box is the id of the div element that will store our cropping image preview
+            const imagebox = document.getElementById('image-box')
+            document.getElementById('image-box').style.marginTop = '10px'
+            // crop-btn is the id of button that will trigger the event of change original file with cropped file.
+            const crop_btn = document.getElementById('crop-btn')
+            // id_image is the id of the input tag where we will upload the image
+            const input = document.getElementById('image1')
+            var filePath = input.value;
+            // Getting image file object from the input variable
+            const img_data = input.files[0]
+            // createObjectURL() static method creates a DOMString containing a URL representing the object given in the parameter.
+            // The new object URL represents the specified File object or Blob object.
+            const url = URL.createObjectURL(img_data)
+            // Creating a image tag inside imagebox which will hold the cropping view image(uploaded file) to it using the url created before.
+            imagebox.innerHTML = `<img src="${url}" id="image" style="width:100%;">`
+            // Storing that cropping view image in a variable
+            const image = document.getElementById('image')
+            // Displaying the image box
+            document.getElementById('image-box').style.display = 'block'
+            // Displaying the Crop buttton
+            document.getElementById('crop-btn').style.display = 'block'
+            // Hiding the Post button
+            //   document.getElementById('add').style.display = 'none'
+            // Creating a croper object with the cropping view image
+            // The new Cropper() method will do all the magic and diplay the cropping view and adding cropping functionality on the website
+            // For more settings, check out their official documentation at https://github.com/fengyuanchen/cropperjs
+            const cropper = new Cropper(image, {
+                autoCropArea: 1,
+                viewMode: 1,
+                scalable: false,
+                zoomable: false,
+                movable: false,
+                aspectRatio: 1 / 1,
+                preview: '.preview1',
+                minCropBoxWidth: 120,
+                minCropBoxHeight: 120,
+            })
+            // When crop button is clicked this event will get triggered
+            crop_btn.addEventListener('click', () => {
+                document.getElementById('image1').style.display = 'block'
+
+                // This method coverts the selected cropped image on the cropper canvas into a blob object
+                cropper.getCroppedCanvas().toBlob((blob) => {
+                    // Gets the original image data
+                    let fileInputElement = document.getElementById('image1');
+                    // Make a new cropped image file using that blob object, image_data.name will make the new file name same as original image
+                    let file = new File([blob], img_data.name, { type: "image/*", lastModified: new Date().getTime() });
+                    // Create a new container
+                    let container = new DataTransfer();
+                    // Add the cropped image file to the container
+                    container.items.add(file);
+                    // Replace the original image file with the new cropped image file
+                    fileInputElement.files = container.files;
+
+                    // Hide the cropper box
+                    document.getElementById('image-box').style.display = 'none'
+                    // Hide the crop button
+                    document.getElementById('crop-btn').style.display = 'none'
+                    // Display the Post button
+                    document.getElementById('add').style.display = 'block'
+                    topFunction()
+                });
+            })
+        }
+    }
+
+  function  deleteProfile(){
+   var data =    confirm('are you sure')
+   if(data === true){
+      $.ajax({
+          method:'post',
+          url:'delete-user-profile-photo',
+          success:(response)=>{
+              location.reload()
+          }
+      })
+    }
+ }
+
+
+</script>

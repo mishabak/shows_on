@@ -8329,7 +8329,7 @@ button.bg-dark:focus {
 
 .fixed-top {
   position: fixed;
-  top: 50px;
+  top: 0px;
   right: 0;
   left: 0;
   z-index: 1030;
@@ -14596,7 +14596,8 @@ p.title-para {
   padding: 15px 45px 15px 15px;
   border: none;
   background: #fff;
-  color: var(--theme-title);
+  /*color: var(--theme-title);*/
+  color: black;
   font-size: 16px;
   border-radius: 6px;
   margin: 0;
@@ -14858,7 +14859,7 @@ header.nav-fixed {
 }
 
 .w3l-main-slider .banner-view {
-  background: url(../images/banner1.jpg) no-repeat center;
+ /* background: url(../images/banner1.jpg) no-repeat center; */
   background-size: cover;
   min-height: 500px;
   position: relative;
@@ -18108,7 +18109,8 @@ ul.page-numbers li a:hover {
 
 .w3l-loginhny .input-group input[type="text"],
 .w3l-loginhny .input-group input[type="email"],
-.w3l-loginhny .input-group input[type="Password"] {
+.w3l-loginhny .input-group input[type="password"],
+.w3l-loginhny .input-group input[type="number"] {
   outline: none;
   padding: 10px 15px;
   -webkit-appearance: none;
@@ -18164,6 +18166,22 @@ ul.page-numbers li a:hover {
   margin-bottom: 3px;
   font-size: 14px;
   font-weight: 600;
+}
+.w3l-loginhny .w3l-hny-login-info form 
+input[type='text']{
+  color:black;
+}
+.w3l-loginhny .w3l-hny-login-info form 
+input[type='email']{
+  color:black;
+}
+.w3l-loginhny .w3l-hny-login-info form 
+input[type='number']{
+  color:black;
+}
+.w3l-loginhny .w3l-hny-login-info form 
+input[type='password']{
+  color:black;
 }
 
 .w3l-loginhny .login-check {

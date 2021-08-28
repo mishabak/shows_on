@@ -1,0 +1,300 @@
+<style>
+    @import url('https://fonts.googleapis.com/css?family=Oswald');
+
+
+    .fl-left {
+        float: left
+    }
+
+    .fl-right {
+        float: right
+    }
+
+    .container11 {
+        width: 90%;
+        margin: 100px auto
+    }
+
+
+
+    .q1121 {
+        text-transform: uppercase;
+        font-weight: 900;
+        border-left: 10px solid #fec500;
+        padding-left: 10px;
+        margin-bottom: 30px
+    }
+
+    .row {
+        overflow: hidden
+    }
+
+    .card {
+        display: table-row;
+        width: 49%;
+        background-color: #fff;
+        color: #989898;
+        margin-bottom: 10px;
+        font-family: 'Oswald', sans-serif;
+        text-transform: uppercase;
+        border: none;
+        position: relative
+    }
+
+    .borderSet {
+        border: 1px solid rgba(110, 95, 95, 0.125);
+        border-radius: 4px;
+        margin: 5px;
+    }
+
+        {
+            {
+             !-- .card+.card {
+                margin-left: 2%
+            }
+
+            --
+        }
+    }
+
+    .date {
+        display: table-cell;
+        width: 25%;
+        position: relative;
+        text-align: center;
+        border-right: 2px dashed #dadde6
+    }
+
+    .date:before,
+    .date:after {
+        content: "";
+        display: block;
+        width: 30px;
+        height: 30px;
+        background-color: #DADDE6;
+        position: absolute;
+        top: -15px;
+        right: -15px;
+        z-index: 1;
+        border-radius: 50%
+    }
+
+    .date:after {
+        top: auto;
+        bottom: -15px
+    }
+
+    .date time {
+        display: block;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        -webkit-transform: translate(-50%, -50%);
+        -ms-transform: translate(-50%, -50%);
+        transform: translate(-50%, -50%)
+    }
+
+    .date time span {
+        display: block
+    }
+
+    .date time span:first-child {
+        color: #2b2b2b;
+        font-weight: 600;
+        font-size: 200%
+    }
+
+    .date time span:last-child {
+        text-transform: uppercase;
+        font-weight: 600;
+        margin-top: -10px;
+        font-size: 100%;
+    }
+
+    @media(max-width:435px) {
+        .date time span:last-child {
+
+            font-size: 90%;
+        }
+    }
+
+    @media(max-width:386px) {
+        .date time span:last-child {
+
+            font-size: 70%;
+        }
+    }
+
+    .card-cont {
+        display: table-cell;
+        width: 75%;
+        font-size: 85%;
+        padding: 10px 10px 30px 50px
+    }
+
+    .card-cont h3 {
+        color: #3C3C3C;
+        font-size: 130%
+    }
+
+    /* .row:last-child .card:last-of-type .card-cont h3 {
+        text-decoration: line-through
+    } */
+
+    .card-cont>div {
+        display: table-row
+    }
+
+    .card-cont .even-date i,
+    .card-cont .even-info i,
+    .card-cont .even-date time,
+    .card-cont .even-info p {
+        display: table-cell
+    }
+
+    .card-cont .even-date i,
+    .card-cont .even-info i {
+        padding: 5% 5% 0 0
+    }
+
+    .card-cont .even-info p {
+        padding: 30px 50px 0 0
+    }
+
+    .card-cont .even-date time span {
+        display: block
+    }
+
+    .card-cont a {
+        display: block;
+        text-decoration: none;
+        width: 80px;
+        height: 30px;
+        background-color: #D8DDE0;
+        color: #fff;
+        text-align: center;
+        line-height: 30px;
+        border-radius: 2px;
+        position: absolute;
+        right: 10px;
+        bottom: 10px
+    }
+
+    /*.row:last-child .card:first-child .card-cont a {
+        background-color: #037FDD
+    }
+
+    .row:last-child .card:last-child .card-cont a {
+        background-color: #F8504C
+    }*/
+
+    @media screen and (max-width: 860px) {
+        .card {
+            display: block;
+            float: none;
+            width: 100%;
+            margin-bottom: 10px
+        }
+
+        .card+.card {
+            margin-left: 0
+        }
+
+        .card-cont .even-date,
+        .card-cont .even-info {
+            font-size: 75%
+        }
+    }
+</style>
+
+<section class="container container11 ">
+    <h1 class="q1121">Booking history</h1>
+    <div class="row">
+        {{#each bookingHistory}}
+        <article class="card fl-left">
+            <div class="borderSet">
+                <section class="date">
+                    <time datetime="23th feb">
+                        <span> <i class="fa fa-calendar"></i></span><span>{{this.date}}</span>
+                    </time>
+                </section>
+
+                <section class="card-cont">
+                    <small>{{this.theater}} {{this.screen}}</small>
+                    <h3>{{this.movie}}</h3>
+                    <div class="even-date">
+                        <i></i>
+                        <time>
+                            <span>Booked seats {{#each this.seat}} {{this}}, {{/each}}</span>
+                            <span>{{this.time}}</span>
+                        </time>
+                    </div>
+                    <div class="even-info">
+                        <i class=""></i>
+                        <p>
+                            Total ticket price Rs.{{this.price}}
+                        </p>
+                    </div>
+                    {{#if bookingCancelled}}
+                     <a class="statusBtnBefore" style="z-index: 1; background: rgba(223, 69, 22, 0.796); font-size: 13px;">cancelled</a>
+
+                    {{else}}
+                    <a class="statusBtnBefore" style="display: none; background: rgba(151, 82, 61, 0.624);" onclick="cancelBooking('{{this._id}}')">cancel</a>
+                    {{/if}}
+                    <a class="statusBtnToday" style="display: none; background: rgba(19, 199, 64, 0.624);" >Available</a>
+                        <a class="statusBtnExpire" style="display: none; background: rgba(17, 155, 197, 0.624);" >used</a>
+
+
+
+                </section>
+            </div>
+        </article>
+        {{!-- compare date for status --}}
+                 <input style="display: none;" class="bookingStatus" type="text" value="{{this.date}}">       
+        {{/each}}
+        {{minDate}}
+    </div>
+    </div>
+
+</section>
+
+<script>
+    var bookingStatus = document.getElementsByClassName('bookingStatus')
+     var dtToday = new Date();
+        var month = dtToday.getMonth() + 1;
+        var day = dtToday.getDate();
+        var year = dtToday.getFullYear();
+        if (month < 10)
+            month = '0' + month.toString();
+        if (day < 10)
+            day = '0' + day.toString();
+        var minDate = year + '-' + month + '-' + day;
+    for(var i = 0 ;i<bookingStatus.length;i++){
+        var bookedDate = document.getElementsByClassName('bookingStatus')[i].value
+        
+        if(minDate < bookedDate ){
+            document.getElementsByClassName('statusBtnBefore')[i].style.display ='block'
+        }else if(minDate === bookedDate){
+            document.getElementsByClassName('statusBtnToday')[i].style.display ='block'
+        }else if(minDate > bookedDate){
+            document.getElementsByClassName('statusBtnExpire')[i].style.display ='block'
+        }
+
+    }
+   function cancelBooking(bookingId){
+      var confirmed = confirm('do you want to cancel booking')
+      if(confirmed ===true){
+          $.ajax({
+           url:'/cancel-booking',
+           method:'post',
+           data:{
+               bookingId
+               },
+           success:(response)=>{
+               location.reload()
+           }
+       })
+      }
+    }
+
+</script>

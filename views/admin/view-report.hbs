@@ -1,0 +1,132 @@
+<script src="https://cdn.datatables.net/1.10.25/css/jquery.dataTables.min.css
+"></script>
+<script src="https://cdn.datatables.net/buttons/1.7.1/css/buttons.dataTables.min.css
+"></script>
+<style>
+   
+.dataTables_filter{
+       margin: 10px !important;
+   }
+   input[type="search"]{
+       border: solid 1px rgba(82, 82, 82, 0.487);
+       border-radius: 4px;
+   }
+</style>
+
+<div style="margin-top: 100px; margin-left: 350px;">
+
+    <form style="margin-bottom: 12px;" action="/admin/view-report" method="POST">
+        <div style="display: flex;flex-direction: row;">
+            <input style="border: none; width: 200px; " class="form-control " name="fromDate" id="fromDate"
+                onclick="toClick()" type="date">
+            <input style=" margin-left: 10px; border: none; width: 200px;" class="form-control" name="toDate"
+                id="toDate" onclick="fromClick()" type="date">
+            <button type="submit"
+                style=" margin-left: 10px; border: none; border-radius: 4px; color: white; background: rgb(32, 136, 143);">filter</button>
+        </div>
+    </form>
+
+    <table id="example" class="display nowrap" style="width:100% ;margin-top: 10px">
+        <thead>
+            <tr>
+                <th>Theater</th>
+                <th>Movie</th>
+                <th>Seats</th>
+                <th>Date</th>
+                <th> Price</th>
+
+            </tr>
+        </thead>
+        <tbody>
+            {{#each bookingHistory}}
+            <tr>
+
+                <td>{{this.theater}} <span style="font-size: 12px;"> {{this.screen}}</span></td>
+                <td>{{this.movie}}</td>
+                <td>{{#each seat}}{{this}}&nbsp;, {{/each}}</td>
+                <td>{{this.date}}</td>
+                <td>Rs.{{this.price}}</td>
+
+            </tr>
+            {{/each}}
+        </tbody>
+        <tfoot>
+            <tr>
+                <th>Theater</th>
+                <th>Movie</th>
+                <th>Seats</th>
+                <th>Date</th>
+                <th> Price</th>
+            </tr>
+        </tfoot>
+    </table>
+</div>
+
+
+
+<script>
+    $(document).ready(function () {
+        $('#example').DataTable({
+            dom: 'Bfrtip',
+            buttons: [
+                'copy', 'csv', 'excel', 'pdf', 'print'
+            ]
+        });
+    });
+
+    $(document).ready(function () {
+        $('#example1').DataTable({
+            dom: 'Bfrtip',
+            buttons: [
+                'copy', 'csv', 'excel', 'pdf', 'print'
+            ]
+        });
+    });
+
+    // set date for filter 
+
+    function toClick() {
+        var to = document.getElementById('toDate')
+        var from = document.getElementById('fromDate').value
+        var today = new Date();
+        var dd = String(today.getDate()).padStart(2, '0');
+        var mm = String(today.getMonth() + 1).padStart(2, '0');
+        var yyyy = today.getFullYear();
+        today = yyyy + '-' + mm + '-' + dd;
+        to.setAttribute("max", today);
+        to.setAttribute("min", from)
+    }
+
+    function fromClick() {
+        var to = document.getElementById('toDate').value
+        var from = document.getElementById('fromDate')
+        from.setAttribute("max", to);
+    }
+
+
+    // filter data
+
+
+
+</script>
+<script src="    https://code.jquery.com/jquery-3.5.1.js
+"></script>
+<script src="https://cdn.datatables.net/1.10.25/js/jquery.dataTables.min.js
+"></script>
+
+<script src="https://cdn.datatables.net/buttons/1.7.1/js/dataTables.buttons.min.js
+"></script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js
+"></script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/pdfmake.min.js
+"></script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/vfs_fonts.js
+"></script>
+
+<script src="https://cdn.datatables.net/buttons/1.7.1/js/buttons.html5.min.js
+"></script>
+
+<script src="https://cdn.datatables.net/buttons/1.7.1/js/buttons.print.min.js"></script>

@@ -1,0 +1,51 @@
+  <div class="row">
+    <div class="col-12">
+        <section style="display: flex; justify-content: center;margin-top: 90px">
+            <div
+                style=" overflow-y: auto; border-radius: 6px; width:600px ; position: sticky; background-color: rgb(255, 255, 255); height: 300px; box-shadow: 0px 0px 5px 1px rgb(182, 182, 182);">
+                <div style="width: 600px; height: 40px; background: rgb(124, 124, 124); position: sticky;">
+                    <h2 style="text-align: center; color: white;">Available screen</h2>
+                </div>
+                <div style="padding: 45px;">
+                    <h5 style="text-align: center;">Enter screen Prices</h5>
+                    {{#each availableScreen}}
+                    <div style="display: flex; flex-direction: row;">
+                        <h3 style="margin: 15px;">{{this.Screen}}</h3> 
+                        <input id="{{this._id}}" type="number" maxlength="3" requdired minlength="2" class="form-control" style="width: 90px;margin: 15px; margin-left: auto; -webkit-appearance: textfield;" value="{{this.Price}}" placeholder="120" >
+                        <button class="btn btn-danger text-light" onclick=" editPrice('{{this._id}}')"
+                            style="margin: 15px;  ">save change</button>
+                    </div>
+                    <hr>
+                    {{/each}}
+                </div>
+            </div>
+            <div>
+            </div>
+        </section>
+    </div>
+</div>
+<script>
+  function  editPrice(screenId){
+   var screenPrice =   document.getElementById(screenId).value
+    if(screenPrice.length === 3 || screenPrice.length === 2){
+       $.ajax({
+           url:'/theater-management/seat-category',
+           method:'post',
+           data:{
+               screenId,
+               screenPrice
+           },
+           success:(response)=>{
+               alert('price inserted')
+           }
+       })
+    }else if(screenPrice.length === 0){
+        alert('please enter valid number')
+    }else{
+        alert('please enter two digit or three digit value')
+    }
+
+    
+
+    }
+</script>

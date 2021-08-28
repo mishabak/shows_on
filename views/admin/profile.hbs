@@ -1,0 +1,303 @@
+{{!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.5.11/cropper.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.5.11/cropper.js"></script>
+
+<style>
+    @import url('https://fonts.googleapis.com/css2?family=Antic+Slab&family=Play&display=swap');
+
+    #theater-address-profile {
+        position: absolute;
+        width: 700px;
+        height: 380px;
+        background-color: rgba(255, 255, 255, 0.494);
+        left: 350px;
+        top: 17%;
+        border-radius: 7px;
+        box-shadow: 0px 0px 3px 1px #fff;
+    }
+
+    #theater-image-profile {
+        position: absolute;
+        width: 400px;
+        height: 250px;
+        background-color: rgba(255, 255, 255, 0.494);
+        left: 170px;
+        top: 30%;
+        border-radius: 7px;
+        box-shadow: 0px 0px 3px 1px #fff;
+    }
+
+    /*profile image choose*/
+    .upload-btn-wrapper112 {
+        position: relative;
+        overflow: hidden;
+        display: inline-block;
+    }
+
+    .btn112 {
+        border: 2px solid gray;
+        color: gray;
+        background-color: white;
+        padding: 8px 20px;
+        border-radius: 8px;
+        font-size: 20px;
+        font-weight: bold;
+    }
+
+    .upload-btn-wrapper112 input[type=file] {
+        font-size: 100px;
+        position: absolute;
+        left: 0;
+        top: 0;
+        opacity: 0;
+    }
+
+    .error {
+        min-height: 0%;
+        background: #ffffff;
+    }
+</style>
+<div style=" height: 585px; background-color: #010423; margin-top: 60px; ">
+    <div style=" position: relative; ">
+        <img height="600px" src="/images/adminBg.jpg" style="width: 100%;" alt="ss">
+        <div id="theater-address-profile">
+            <div style="
+        margin-left: 240px;
+        margin-top: 90px; color: rgb(10, 14, 49);
+            ">
+                <h3><b>Name</b> &nbsp;&nbsp;&nbsp; <span>{{adminDetails.Name}}</span></h3>
+                <h3><b>Email</b> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <span> {{adminDetails.Email}}</span></h3>
+                <h3><b>Phone</b> &nbsp;&nbsp;&nbsp; <span>{{adminDetails.Phone}}</span></h3>
+                <div style="display: flex; flex-direction: row;">
+                    <div>
+                        <button onclick="editAdminDetails('{{adminDetails._id}}')"
+                            style="background: rgb(10, 14, 49); color: wheat; margin-left: 100px; margin-top: 40px;"
+                            class="btn">Edit
+                            details</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div id="theater-image-profile">
+            {{!-- test ----------------------------------------------- --}}
+            {{#if theaterDetails.Profile}}
+            <img style="
+ margin-left: 30px;
+ margin-top: 30px;
+ border-radius: 5px;
+ " src="/profileImages/{{theaterDetails._id}}.jpg" width="180px" height="180px" alt="">
+            {{else}}
+            <img style="
+ margin-left: 30px;
+ margin-top: 30px;
+ border-radius: 5px;
+ " src="/images/defaultProfile.png" width="180px" height="180px" alt="">
+            {{/if}}
+            <button id="add-image"
+                style="margin-top: 20px; margin-left: 30px; background: rgb(10, 14, 49); color: wheat;"
+                class="btn ">Edit
+            </button>
+            {{#if theaterDetails.Profile}}
+            <button id="delete-image"
+                style="margin-top: 20px; margin-left: 10px; background: rgb(10, 14, 49); color: wheat;"
+                class="btn ">Delete
+            </button>
+            {{/if}}
+        </div>
+    </div>
+    <div style="
+    width: 100%;
+    height: 100%; 
+    background: #000000ab; 
+    position: fixed; 
+    margin-top: 60px; top: 0;
+    display: none;
+    justify-content: center;
+    align-items: center;
+    " id="theater-profile-modal">
+
+        <div id="theater-inner-modal" style="
+    width: 500px;
+    background: rgba(255, 255, 255, 0.809);
+    height: 250px;
+    border-radius: 8px;
+    padding: 25px;
+    "> <span style="margin-right:10px; margin-top: 5px;" class="close">&times;</span>
+            <div style="display: flex; flex-direction: row; align-items: center;">
+                {{#if theaterDetails.Profile}}
+                <img id="editimage1" style="width: 200px; height: 200px;padding: 15px;"
+                    src="/profileImages/{{theaterDetails._id}}.jpg" alt="">
+                {{else}}
+                <img id="editimage1" style="width: 200px; height: 200px;padding: 15px;" src="/images/defaultProfile.png"
+                    alt="">
+                {{/if}}
+                <div id="img1" class="preview1" style="width: 200px; height: 200px; display: none; overflow: hidden;">
+                </div>
+                <form id="add-theater-owner-profile" method="POST" enctype="multipart/form-data"
+                    action="/theater-management/add-profile-image">
+                    <div class="upload-btn-wrapper112">
+                        <button id="image11" type="" class="btn112">Choose image</button>
+                        <input id="image1" onchange="return filevalidation()" type="file" name="Theater_profile" />
+                        <div style=" display: none; width: 300px; height: 300px;" id="image-box"></div>
+                    </div>
+                    <input style="display: none;" type="text" name="Theater_id" value="{{theaterDetails._id}}">
+                    <button id="add"
+                        style=" display: none; margin-top: 20px;width: 100px; margin-left: 30px; background: rgb(10, 14, 49); color: wheat;"
+                        class="btn" type="submit">Save</button>
+                </form>
+                <button type="" style="display: none; margin-left: 12px;" class="btn btn-dark"
+                    id="crop-btn">crop</button>
+            </div>
+        </div>
+    </div>
+    <div id="edit-theater-details"
+        style="display: none; background:rgba(28, 27, 27, 0.782);position:fixed; z-index: 5; top: 0; width:100%; height:100%; justify-content:center; align-items:center;">
+        <div style="width: 500px; height: 260px;  background: rgb(255, 255, 255); border-radius: 8px; padding: 15px;">
+            <form id="edit-details" action="/theater-management/edit-theater-details" method="POST">
+                <span style="margin-right:10px; margin-top: 5px;" class="close">&times;</span>
+                <div class="row">
+                    <div class="col-6">
+                        <label for="">Name</label>
+                        <input class="form-control" value="{{theaterDetails.Owner_name}}" name="Owner_name" type="text">
+                    </div>
+                    <div class="col-6">
+                        <label for="">Email</label>
+                        <input class="form-control" value="{{theaterDetails.Email}}" name="Email" type="email">
+                    </div>
+                    <div class="col-6">
+                        <label for="">Phone</label>
+                        <input style="-moz-appearance: textfield;" name="Phone" value="{{theaterDetails.phone}}"
+                            class="form-control" type="number">
+                    </div>
+                </div>
+                <input type="text" name="theaterId" style="display: none;" value="{{theaterDetails._id}}">
+                <button class="btn btn-dark mt-3 ml-3">Submit</button>
+            </form>
+        </div>
+    </div>
+</div>
+
+
+<script>
+    $(document).ready(() => {
+        $('#add-image').click(() => {
+            document.getElementById('theater-profile-modal').style.display = "flex"
+        })
+        var span1 = document.getElementsByClassName('close')[0]
+        var profileModal = document.getElementById('theater-profile-modal')
+        editDetails = document.getElementById('edit-theater-details')
+        var span2 = document.getElementsByClassName('close')[1]
+        window.onclick = (event) => {
+            if (event.target == span1 || event.target == profileModal || event.target == editDetails || event.target == span2) {
+                document.getElementById('theater-profile-modal').style.display = "none"
+                document.getElementById('edit-theater-details').style.display = 'none'
+            }
+        }
+        $('#delete-image').click(() => {
+            var data = confirm('You want to delete')
+            if (data === true) {
+                $.ajax({
+                    url: '/admin/delete-theater-owner-profile',
+                    type: 'get',
+                    success: (response) => {
+                        console.log("error")
+                        location.reload()
+                    }
+                })
+            }
+        })
+
+    })
+
+    // image crop ------->>>>>>>>
+
+    function filevalidation() {
+        var fileInput =
+            document.getElementById('image1');
+        var filePath = fileInput.value;
+        // Allowing file type
+        var allowedExtensions =
+            /(\.jpg)$/i;
+        if (!allowedExtensions.exec(filePath)) {
+            alert('Please choose an jpg image file');
+            fileInput.value = '';
+            return false;
+        }
+        else {
+            document.getElementById('add').style.display = 'none'
+            document.getElementById('image1').style.display = 'none'
+            document.getElementById('image11').style.display = 'none'
+            document.getElementById('theater-inner-modal').style.width = '650px'
+            document.getElementById('theater-inner-modal').style.height = '350px'
+            // image-box is the id of the div element that will store our cropping image preview
+            const imagebox = document.getElementById('image-box')
+            document.getElementById('image-box').style.marginLeft = '30px'
+            // crop-btn is the id of button that will trigger the event of change original file with cropped file.
+            const crop_btn = document.getElementById('crop-btn')
+            // id_image is the id of the input tag where we will upload the image
+            const input = document.getElementById('image1')
+            document.getElementById('img1').style.display = 'block'
+            document.getElementById('editimage1').style.display = 'none'
+            var filePath = input.value;
+            // Getting image file object from the input variable
+            const img_data = input.files[0]
+            // createObjectURL() static method creates a DOMString containing a URL representing the object given in the parameter.
+            // The new object URL represents the specified File object or Blob object.
+            const url = URL.createObjectURL(img_data)
+            // Creating a image tag inside imagebox which will hold the cropping view image(uploaded file) to it using the url created before.
+            imagebox.innerHTML = `<img src="${url}" id="image" style="width:100%;">`
+            // Storing that cropping view image in a variable
+            const image = document.getElementById('image')
+            // Displaying the image box
+            document.getElementById('image-box').style.display = 'block'
+            // Displaying the Crop buttton
+            document.getElementById('crop-btn').style.display = 'block'
+            // Hiding the Post button
+            //   document.getElementById('add').style.display = 'none'
+            // Creating a croper object with the cropping view image
+            // The new Cropper() method will do all the magic and diplay the cropping view and adding cropping functionality on the website
+            // For more settings, check out their official documentation at https://github.com/fengyuanchen/cropperjs
+            const cropper = new Cropper(image, {
+                autoCropArea: 1,
+                viewMode: 1,
+                scalable: false,
+                zoomable: false,
+                movable: false,
+                aspectRatio: 1 / 1,
+                preview: '.preview1',
+                minCropBoxWidth: 120,
+                minCropBoxHeight: 120,
+            })
+            // When crop button is clicked this event will get triggered
+            crop_btn.addEventListener('click', () => {
+                document.getElementById('image1').style.display = 'block'
+                document.getElementById('image11').style.display = 'block'
+                document.getElementById('theater-inner-modal').style.width = '500px'
+                document.getElementById('theater-inner-modal').style.height = '250px'
+                // This method coverts the selected cropped image on the cropper canvas into a blob object
+                cropper.getCroppedCanvas().toBlob((blob) => {
+                    // Gets the original image data
+                    let fileInputElement = document.getElementById('image1');
+                    // Make a new cropped image file using that blob object, image_data.name will make the new file name same as original image
+                    let file = new File([blob], img_data.name, { type: "image/*", lastModified: new Date().getTime() });
+                    // Create a new container
+                    let container = new DataTransfer();
+                    // Add the cropped image file to the container
+                    container.items.add(file);
+                    // Replace the original image file with the new cropped image file
+                    fileInputElement.files = container.files;
+
+                    // Hide the cropper box
+                    document.getElementById('image-box').style.display = 'none'
+                    // Hide the crop button
+                    document.getElementById('crop-btn').style.display = 'none'
+                    // Display the Post button
+                    document.getElementById('add').style.display = 'block'
+                });
+            })
+        }
+    }
+    function editTheaterDetails(adminId) {
+        document.getElementById('edit-theater-details').style.display = 'flex'
+    }
+
+</script> --}}

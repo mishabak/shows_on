@@ -1,0 +1,39 @@
+<script src="https://kit.fontawesome.com/a73f9c0e98.js" crossorigin="anonymous"></script>
+ <script src="/theater/assets/js/jquery.dataTables.min.js"></script>
+
+<div class="container table-responsive" style="margin-top: 120px;  display: flex; justify-content: center;">
+
+    <table style="width: 700px; border: solid rgba(0, 0, 0, 0.316) 1px;"  id="datatablesSimple" class="table">
+        <thead>
+            <tr>
+                <th scope="col">Owner Name</th>
+                <th scope="col">theater</th>
+                <th scope="col">Email</th>
+                <th scope="col">Phone</th>
+                <th scope="col">Block</th>
+                
+            </tr>
+        </thead>
+        <tbody>
+            {{#each theater }}
+            <tr>
+                <td>{{this.Owner_name}}</td>
+                <td>{{this.Theater_name}}</td>
+                <td>{{this.Email}}</td>
+                <td>{{this.phone}}</td>
+                {{#if this.Block}}
+                 <td><a href="/admin/unblock-theater/{{this._id}}"><i class="fas fa-lock text-info"></i></a></td>
+                {{else}}
+               
+                <td><a href="/admin/block-theater/{{this._id}}"><i class="fas fa-unlock text-info"></i></a></td>
+                {{/if}}
+            </tr>
+            {{/each}}
+        </tbody>
+    </table>
+</div>
+<script>
+    $(document).ready(function () {
+        $('#datatablesSimple').DataTable();
+    });
+</script>

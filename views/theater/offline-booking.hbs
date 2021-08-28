@@ -1,0 +1,559 @@
+<style>
+    .seats {
+        width: 9vw;
+        height: 9vw;
+        color: white;
+        font-size: 15px;
+        text-align: center;
+        cursor: default;
+    }
+
+    @media(max-width:850px) {
+        .seats {
+            font-size: 12px;
+        }
+    }
+
+    @media(min-width:360px) {
+        .seats {
+            width: 33px;
+            height: 33px;
+        }
+    }
+
+    @media(min-width:500px) {
+        .seats {
+            width: 6vw;
+            height: 6vw;
+        }
+    }
+
+    @media(min-width:660px) {
+        .seats {
+            width: 40px;
+            height: 40px;
+        }
+    }
+
+    @media(min-width:760px) {
+        .seats {
+            width: 44px;
+            height: 44px;
+        }
+    }
+
+    @media(min-width:850px) {
+        .seats {
+            width: 50px;
+            height: 50px;
+        }
+    }
+</style>
+
+<div
+    style=" margin-top:70px; margin-left: 100px;  display: flex; justify-content: center; align-items: center; margin-bottom: 60px;padding: 10px; background:rgb(199, 199, 199,0.62)">
+    <div
+        style="max-height: 600px; overflow: auto; display: flex; flex-direction: column;padding-bottom: 20px; box-shadow: 0px 0px 4px 2px #a4a4a4; ">
+        <div style="display: flex; justify-content: center; margin-top: 5px;">
+            <input type="text" disabled
+                style="background: #aa126f; border: none; width: 30px; height: 30px; margin: 3px;">
+            <label for="" style="color: black;">booked seats</label>
+            <input type="text" disabled
+                style="background: rgb(45, 45, 45); border: none; width: 30px; height: 30px; margin: 3px;">
+            <label for="" style="color: black;">available seats</label>
+
+        </div>
+       
+        <h4 style="width: 100%; text-align: center; color: black;">{{seatstructure.Show}}</h4>
+
+        <div style="display: flex; flex-direction: row;">
+            <input onclick="bookSeatNumber(this)" class="seats" type="text"
+                style="background:rgb(45, 45, 45); border: none; margin: 4px;">
+            <input onclick="bookSeatNumber(this)" class="seats" type="text"
+                style="background:rgb(45, 45, 45); border: none; margin: 4px;">
+            <input onclick="bookSeatNumber(this)" class="seats" type="text"
+                style="background:rgb(45, 45, 45); border: none; margin: 4px;">
+            <input onclick="bookSeatNumber(this)" class="seats" type="text"
+                style="background:rgb(45, 45, 45); border: none; margin: 4px;">
+            <input onclick="bookSeatNumber(this)" class="seats" type="text"
+                style="background:rgb(45, 45, 45); border: none; margin: 4px;">
+            <input onclick="bookSeatNumber(this)" class="seats" type="text"
+                style="background:rgb(45, 45, 45); border: none; margin: 4px;">
+            <input onclick="bookSeatNumber(this)" class="seats" type="text"
+                style="background:rgb(45, 45, 45); border: none; margin: 4px;">
+            <input onclick="bookSeatNumber(this)" class="seats" type="text"
+                style="background:rgb(45, 45, 45); border: none; margin: 4px;">
+            <input onclick="bookSeatNumber(this)" class="seats" type="text"
+                style="background:rgb(45, 45, 45); border: none; margin: 4px;">
+            <input onclick="bookSeatNumber(this)" class="seats" type="text"
+                style="background:rgb(45, 45, 45); border: none; margin: 4px;">
+            <input onclick="bookSeatNumber(this)" class="seats" type="text"
+                style="background:rgb(45, 45, 45); border: none; margin: 4px;">
+            <input onclick="bookSeatNumber(this)" class="seats" type="text"
+                style="background:rgb(45, 45, 45); border: none; margin: 4px;">
+            <input onclick="bookSeatNumber(this)" class="seats" type="text"
+                style="background:rgb(45, 45, 45); border: none; margin: 4px;">
+            <input onclick="bookSeatNumber(this)" class="seats" type="text"
+                style="background:rgb(45, 45, 45); border: none; margin: 4px;">
+            <input onclick="bookSeatNumber(this)" class="seats" type="text"
+                style="background:rgb(45, 45, 45); border: none; margin: 4px;">
+            <input onclick="bookSeatNumber(this)" class="seats" type="text"
+                style="background:rgb(45, 45, 45); border: none; margin: 4px;">
+        </div>
+        <div style="display: flex; flex-direction: row;">
+            <input onclick="bookSeatNumber(this)" class="seats" type="text"
+                style="background:rgb(45, 45, 45); border: none; margin: 4px;">
+            <input onclick="bookSeatNumber(this)" class="seats" type="text"
+                style="background:rgb(45, 45, 45); border: none; margin: 4px;">
+            <input onclick="bookSeatNumber(this)" class="seats" type="text"
+                style="background:rgb(45, 45, 45); border: none; margin: 4px;">
+            <input onclick="bookSeatNumber(this)" class="seats" type="text"
+                style="background:rgb(45, 45, 45); border: none; margin: 4px;">
+            <input onclick="bookSeatNumber(this)" class="seats" type="text"
+                style="background:rgb(45, 45, 45); border: none; margin: 4px;">
+            <input onclick="bookSeatNumber(this)" class="seats" type="text"
+                style="background:rgb(45, 45, 45); border: none; margin: 4px;">
+            <input onclick="bookSeatNumber(this)" class="seats" type="text"
+                style="background:rgb(45, 45, 45); border: none; margin: 4px;">
+            <input onclick="bookSeatNumber(this)" class="seats" type="text"
+                style="background:rgb(45, 45, 45); border: none; margin: 4px;">
+            <input onclick="bookSeatNumber(this)" class="seats" type="text"
+                style="background:rgb(45, 45, 45); border: none; margin: 4px;">
+            <input onclick="bookSeatNumber(this)" class="seats" type="text"
+                style="background:rgb(45, 45, 45); border: none; margin: 4px;">
+            <input onclick="bookSeatNumber(this)" class="seats" type="text"
+                style="background:rgb(45, 45, 45); border: none; margin: 4px;">
+            <input onclick="bookSeatNumber(this)" class="seats" type="text"
+                style="background:rgb(45, 45, 45); border: none; margin: 4px;">
+            <input onclick="bookSeatNumber(this)" class="seats" type="text"
+                style="background:rgb(45, 45, 45); border: none; margin: 4px;">
+            <input onclick="bookSeatNumber(this)" class="seats" type="text"
+                style="background:rgb(45, 45, 45); border: none; margin: 4px;">
+            <input onclick="bookSeatNumber(this)" class="seats" type="text"
+                style="background:rgb(45, 45, 45); border: none; margin: 4px;">
+            <input onclick="bookSeatNumber(this)" class="seats" type="text"
+                style="background:rgb(45, 45, 45); border: none; margin: 4px;">
+        </div>
+        <div style="display: flex; flex-direction: row;">
+            <input onclick="bookSeatNumber(this)" class="seats" type="text"
+                style="background:rgb(45, 45, 45); border: none; margin: 4px;">
+            <input onclick="bookSeatNumber(this)" class="seats" type="text"
+                style="background:rgb(45, 45, 45); border: none; margin: 4px;">
+            <input onclick="bookSeatNumber(this)" class="seats" type="text"
+                style="background:rgb(45, 45, 45); border: none; margin: 4px;">
+            <input onclick="bookSeatNumber(this)" class="seats" type="text"
+                style="background:rgb(45, 45, 45); border: none; margin: 4px;">
+            <input onclick="bookSeatNumber(this)" class="seats" type="text"
+                style="background:rgb(45, 45, 45); border: none; margin: 4px;">
+            <input onclick="bookSeatNumber(this)" class="seats" type="text"
+                style="background:rgb(45, 45, 45); border: none; margin: 4px;">
+            <input onclick="bookSeatNumber(this)" class="seats" type="text"
+                style="background:rgb(45, 45, 45); border: none; margin: 4px;">
+            <input onclick="bookSeatNumber(this)" class="seats" type="text"
+                style="background:rgb(45, 45, 45); border: none; margin: 4px;">
+            <input onclick="bookSeatNumber(this)" class="seats" type="text"
+                style="background:rgb(45, 45, 45); border: none; margin: 4px;">
+            <input onclick="bookSeatNumber(this)" class="seats" type="text"
+                style="background:rgb(45, 45, 45); border: none; margin: 4px;">
+            <input onclick="bookSeatNumber(this)" class="seats" type="text"
+                style="background:rgb(45, 45, 45); border: none; margin: 4px;">
+            <input onclick="bookSeatNumber(this)" class="seats" type="text"
+                style="background:rgb(45, 45, 45); border: none; margin: 4px;">
+            <input onclick="bookSeatNumber(this)" class="seats" type="text"
+                style="background:rgb(45, 45, 45); border: none; margin: 4px;">
+            <input onclick="bookSeatNumber(this)" class="seats" type="text"
+                style="background:rgb(45, 45, 45); border: none; margin: 4px;">
+            <input onclick="bookSeatNumber(this)" class="seats" type="text"
+                style="background:rgb(45, 45, 45); border: none; margin: 4px;">
+            <input onclick="bookSeatNumber(this)" class="seats" type="text"
+                style="background:rgb(45, 45, 45); border: none; margin: 4px;">
+        </div>
+        <div style="display: flex; flex-direction: row;">
+            <input onclick="bookSeatNumber(this)" class="seats" type="text"
+                style="background:rgb(45, 45, 45); border: none; margin: 4px;">
+            <input onclick="bookSeatNumber(this)" class="seats" type="text"
+                style="background:rgb(45, 45, 45); border: none; margin: 4px;">
+            <input onclick="bookSeatNumber(this)" class="seats" type="text"
+                style="background:rgb(45, 45, 45); border: none; margin: 4px;">
+            <input onclick="bookSeatNumber(this)" class="seats" type="text"
+                style="background:rgb(45, 45, 45); border: none; margin: 4px;">
+            <input onclick="bookSeatNumber(this)" class="seats" type="text"
+                style="background:rgb(45, 45, 45); border: none; margin: 4px;">
+            <input onclick="bookSeatNumber(this)" class="seats" type="text"
+                style="background:rgb(45, 45, 45); border: none; margin: 4px;">
+            <input onclick="bookSeatNumber(this)" class="seats" type="text"
+                style="background:rgb(45, 45, 45); border: none; margin: 4px;">
+            <input onclick="bookSeatNumber(this)" class="seats" type="text"
+                style="background:rgb(45, 45, 45); border: none; margin: 4px;">
+            <input onclick="bookSeatNumber(this)" class="seats" type="text"
+                style="background:rgb(45, 45, 45); border: none; margin: 4px;">
+            <input onclick="bookSeatNumber(this)" class="seats" type="text"
+                style="background:rgb(45, 45, 45); border: none; margin: 4px;">
+            <input onclick="bookSeatNumber(this)" class="seats" type="text"
+                style="background:rgb(45, 45, 45); border: none; margin: 4px;">
+            <input onclick="bookSeatNumber(this)" class="seats" type="text"
+                style="background:rgb(45, 45, 45); border: none; margin: 4px;">
+            <input onclick="bookSeatNumber(this)" class="seats" type="text"
+                style="background:rgb(45, 45, 45); border: none; margin: 4px;">
+            <input onclick="bookSeatNumber(this)" class="seats" type="text"
+                style="background:rgb(45, 45, 45); border: none; margin: 4px;">
+            <input onclick="bookSeatNumber(this)" class="seats" type="text"
+                style="background:rgb(45, 45, 45); border: none; margin: 4px;">
+            <input onclick="bookSeatNumber(this)" class="seats" type="text"
+                style="background:rgb(45, 45, 45); border: none; margin: 4px;">
+        </div>
+        <div style="display: flex; flex-direction: row;">
+            <input onclick="bookSeatNumber(this)" class="seats" type="text"
+                style="background:rgb(45, 45, 45); border: none; margin: 4px;">
+            <input onclick="bookSeatNumber(this)" class="seats" type="text"
+                style="background:rgb(45, 45, 45); border: none; margin: 4px;">
+            <input onclick="bookSeatNumber(this)" class="seats" type="text"
+                style="background:rgb(45, 45, 45); border: none; margin: 4px;">
+            <input onclick="bookSeatNumber(this)" class="seats" type="text"
+                style="background:rgb(45, 45, 45); border: none; margin: 4px;">
+            <input onclick="bookSeatNumber(this)" class="seats" type="text"
+                style="background:rgb(45, 45, 45); border: none; margin: 4px;">
+            <input onclick="bookSeatNumber(this)" class="seats" type="text"
+                style="background:rgb(45, 45, 45); border: none; margin: 4px;">
+            <input onclick="bookSeatNumber(this)" class="seats" type="text"
+                style="background:rgb(45, 45, 45); border: none; margin: 4px;">
+            <input onclick="bookSeatNumber(this)" class="seats" type="text"
+                style="background:rgb(45, 45, 45); border: none; margin: 4px;">
+            <input onclick="bookSeatNumber(this)" class="seats" type="text"
+                style="background:rgb(45, 45, 45); border: none; margin: 4px;">
+            <input onclick="bookSeatNumber(this)" class="seats" type="text"
+                style="background:rgb(45, 45, 45); border: none; margin: 4px;">
+            <input onclick="bookSeatNumber(this)" class="seats" type="text"
+                style="background:rgb(45, 45, 45); border: none; margin: 4px;">
+            <input onclick="bookSeatNumber(this)" class="seats" type="text"
+                style="background:rgb(45, 45, 45); border: none; margin: 4px;">
+            <input onclick="bookSeatNumber(this)" class="seats" type="text"
+                style="background:rgb(45, 45, 45); border: none; margin: 4px;">
+            <input onclick="bookSeatNumber(this)" class="seats" type="text"
+                style="background:rgb(45, 45, 45); border: none; margin: 4px;">
+            <input onclick="bookSeatNumber(this)" class="seats" type="text"
+                style="background:rgb(45, 45, 45); border: none; margin: 4px;">
+            <input onclick="bookSeatNumber(this)" class="seats" type="text"
+                style="background:rgb(45, 45, 45); border: none; margin: 4px;">
+        </div>
+        <div style="display: flex; flex-direction: row;">
+            <input onclick="bookSeatNumber(this)" class="seats" type="text"
+                style="background:rgb(45, 45, 45); border: none; margin: 4px;">
+            <input onclick="bookSeatNumber(this)" class="seats" type="text"
+                style="background:rgb(45, 45, 45); border: none; margin: 4px;">
+            <input onclick="bookSeatNumber(this)" class="seats" type="text"
+                style="background:rgb(45, 45, 45); border: none; margin: 4px;">
+            <input onclick="bookSeatNumber(this)" class="seats" type="text"
+                style="background:rgb(45, 45, 45); border: none; margin: 4px;">
+            <input onclick="bookSeatNumber(this)" class="seats" type="text"
+                style="background:rgb(45, 45, 45); border: none; margin: 4px;">
+            <input onclick="bookSeatNumber(this)" class="seats" type="text"
+                style="background:rgb(45, 45, 45); border: none; margin: 4px;">
+            <input onclick="bookSeatNumber(this)" class="seats" type="text"
+                style="background:rgb(45, 45, 45); border: none; margin: 4px;">
+            <input onclick="bookSeatNumber(this)" class="seats" type="text"
+                style="background:rgb(45, 45, 45); border: none; margin: 4px;">
+            <input onclick="bookSeatNumber(this)" class="seats" type="text"
+                style="background:rgb(45, 45, 45); border: none; margin: 4px;">
+            <input onclick="bookSeatNumber(this)" class="seats" type="text"
+                style="background:rgb(45, 45, 45); border: none; margin: 4px;">
+            <input onclick="bookSeatNumber(this)" class="seats" type="text"
+                style="background:rgb(45, 45, 45); border: none; margin: 4px;">
+            <input onclick="bookSeatNumber(this)" class="seats" type="text"
+                style="background:rgb(45, 45, 45); border: none; margin: 4px;">
+            <input onclick="bookSeatNumber(this)" class="seats" type="text"
+                style="background:rgb(45, 45, 45); border: none; margin: 4px;">
+            <input onclick="bookSeatNumber(this)" class="seats" type="text"
+                style="background:rgb(45, 45, 45); border: none; margin: 4px;">
+            <input onclick="bookSeatNumber(this)" class="seats" type="text"
+                style="background:rgb(45, 45, 45); border: none; margin: 4px;">
+            <input onclick="bookSeatNumber(this)" class="seats" type="text"
+                style="background:rgb(45, 45, 45); border: none; margin: 4px;">
+        </div>
+        <div style="display: flex; flex-direction: row;">
+            <input onclick="bookSeatNumber(this)" class="seats" type="text"
+                style="background:rgb(45, 45, 45); border: none; margin: 4px;">
+            <input onclick="bookSeatNumber(this)" class="seats" type="text"
+                style="background:rgb(45, 45, 45); border: none; margin: 4px;">
+            <input onclick="bookSeatNumber(this)" class="seats" type="text"
+                style="background:rgb(45, 45, 45); border: none; margin: 4px;">
+            <input onclick="bookSeatNumber(this)" class="seats" type="text"
+                style="background:rgb(45, 45, 45); border: none; margin: 4px;">
+            <input onclick="bookSeatNumber(this)" class="seats" type="text"
+                style="background:rgb(45, 45, 45); border: none; margin: 4px;">
+            <input onclick="bookSeatNumber(this)" class="seats" type="text"
+                style="background:rgb(45, 45, 45); border: none; margin: 4px;">
+            <input onclick="bookSeatNumber(this)" class="seats" type="text"
+                style="background:rgb(45, 45, 45); border: none; margin: 4px;">
+            <input onclick="bookSeatNumber(this)" class="seats" type="text"
+                style="background:rgb(45, 45, 45); border: none; margin: 4px;">
+            <input onclick="bookSeatNumber(this)" class="seats" type="text"
+                style="background:rgb(45, 45, 45); border: none; margin: 4px;">
+            <input onclick="bookSeatNumber(this)" class="seats" type="text"
+                style="background:rgb(45, 45, 45); border: none; margin: 4px;">
+            <input onclick="bookSeatNumber(this)" class="seats" type="text"
+                style="background:rgb(45, 45, 45); border: none; margin: 4px;">
+            <input onclick="bookSeatNumber(this)" class="seats" type="text"
+                style="background:rgb(45, 45, 45); border: none; margin: 4px;">
+            <input onclick="bookSeatNumber(this)" class="seats" type="text"
+                style="background:rgb(45, 45, 45); border: none; margin: 4px;">
+            <input onclick="bookSeatNumber(this)" class="seats" type="text"
+                style="background:rgb(45, 45, 45); border: none; margin: 4px;">
+            <input onclick="bookSeatNumber(this)" class="seats" type="text"
+                style="background:rgb(45, 45, 45); border: none; margin: 4px;">
+            <input onclick="bookSeatNumber(this)" class="seats" type="text"
+                style="background:rgb(45, 45, 45); border: none; margin: 4px;">
+        </div>
+        <div style="display: flex; flex-direction: row;">
+            <input onclick="bookSeatNumber(this)" class="seats" type="text"
+                style="background:rgb(45, 45, 45); border: none; margin: 4px;">
+            <input onclick="bookSeatNumber(this)" class="seats" type="text"
+                style="background:rgb(45, 45, 45); border: none; margin: 4px;">
+            <input onclick="bookSeatNumber(this)" class="seats" type="text"
+                style="background:rgb(45, 45, 45); border: none; margin: 4px;">
+            <input onclick="bookSeatNumber(this)" class="seats" type="text"
+                style="background:rgb(45, 45, 45); border: none; margin: 4px;">
+            <input onclick="bookSeatNumber(this)" class="seats" type="text"
+                style="background:rgb(45, 45, 45); border: none; margin: 4px;">
+            <input onclick="bookSeatNumber(this)" class="seats" type="text"
+                style="background:rgb(45, 45, 45); border: none; margin: 4px;">
+            <input onclick="bookSeatNumber(this)" class="seats" type="text"
+                style="background:rgb(45, 45, 45); border: none; margin: 4px;">
+            <input onclick="bookSeatNumber(this)" class="seats" type="text"
+                style="background:rgb(45, 45, 45); border: none; margin: 4px;">
+            <input onclick="bookSeatNumber(this)" class="seats" type="text"
+                style="background:rgb(45, 45, 45); border: none; margin: 4px;">
+            <input onclick="bookSeatNumber(this)" class="seats" type="text"
+                style="background:rgb(45, 45, 45); border: none; margin: 4px;">
+            <input onclick="bookSeatNumber(this)" class="seats" type="text"
+                style="background:rgb(45, 45, 45); border: none; margin: 4px;">
+            <input onclick="bookSeatNumber(this)" class="seats" type="text"
+                style="background:rgb(45, 45, 45); border: none; margin: 4px;">
+            <input onclick="bookSeatNumber(this)" class="seats" type="text"
+                style="background:rgb(45, 45, 45); border: none; margin: 4px;">
+            <input onclick="bookSeatNumber(this)" class="seats" type="text"
+                style="background:rgb(45, 45, 45); border: none; margin: 4px;">
+            <input onclick="bookSeatNumber(this)" class="seats" type="text"
+                style="background:rgb(45, 45, 45); border: none; margin: 4px;">
+            <input onclick="bookSeatNumber(this)" class="seats" type="text"
+                style="background:rgb(45, 45, 45); border: none; margin: 4px;">
+        </div>
+        <div style="display: flex; flex-direction: row;">
+            <input onclick="bookSeatNumber(this)" class="seats" type="text"
+                style="background:rgb(45, 45, 45); border: none; margin: 4px;">
+            <input onclick="bookSeatNumber(this)" class="seats" type="text"
+                style="background:rgb(45, 45, 45); border: none; margin: 4px;">
+            <input onclick="bookSeatNumber(this)" class="seats" type="text"
+                style="background:rgb(45, 45, 45); border: none; margin: 4px;">
+            <input onclick="bookSeatNumber(this)" class="seats" type="text"
+                style="background:rgb(45, 45, 45); border: none; margin: 4px;">
+            <input onclick="bookSeatNumber(this)" class="seats" type="text"
+                style="background:rgb(45, 45, 45); border: none; margin: 4px;">
+            <input onclick="bookSeatNumber(this)" class="seats" type="text"
+                style="background:rgb(45, 45, 45); border: none; margin: 4px;">
+            <input onclick="bookSeatNumber(this)" class="seats" type="text"
+                style="background:rgb(45, 45, 45); border: none; margin: 4px;">
+            <input onclick="bookSeatNumber(this)" class="seats" type="text"
+                style="background:rgb(45, 45, 45); border: none; margin: 4px;">
+            <input onclick="bookSeatNumber(this)" class="seats" type="text"
+                style="background:rgb(45, 45, 45); border: none; margin: 4px;">
+            <input onclick="bookSeatNumber(this)" class="seats" type="text"
+                style="background:rgb(45, 45, 45); border: none; margin: 4px;">
+            <input onclick="bookSeatNumber(this)" class="seats" type="text"
+                style="background:rgb(45, 45, 45); border: none; margin: 4px;">
+            <input onclick="bookSeatNumber(this)" class="seats" type="text"
+                style="background:rgb(45, 45, 45); border: none; margin: 4px;">
+            <input onclick="bookSeatNumber(this)" class="seats" type="text"
+                style="background:rgb(45, 45, 45); border: none; margin: 4px;">
+            <input onclick="bookSeatNumber(this)" class="seats" type="text"
+                style="background:rgb(45, 45, 45); border: none; margin: 4px;">
+            <input onclick="bookSeatNumber(this)" class="seats" type="text"
+                style="background:rgb(45, 45, 45); border: none; margin: 4px;">
+            <input onclick="bookSeatNumber(this)" class="seats" type="text"
+                style="background:rgb(45, 45, 45); border: none; margin: 4px;">
+        </div>
+        <div style="display: flex; flex-direction: row;">
+            <input onclick="bookSeatNumber(this)" class="seats" type="text"
+                style="background:rgb(45, 45, 45); border: none; margin: 4px;">
+            <input onclick="bookSeatNumber(this)" class="seats" type="text"
+                style="background:rgb(45, 45, 45); border: none; margin: 4px;">
+            <input onclick="bookSeatNumber(this)" class="seats" type="text"
+                style="background:rgb(45, 45, 45); border: none; margin: 4px;">
+            <input onclick="bookSeatNumber(this)" class="seats" type="text"
+                style="background:rgb(45, 45, 45); border: none; margin: 4px;">
+            <input onclick="bookSeatNumber(this)" class="seats" type="text"
+                style="background:rgb(45, 45, 45); border: none; margin: 4px;">
+            <input onclick="bookSeatNumber(this)" class="seats" type="text"
+                style="background:rgb(45, 45, 45); border: none; margin: 4px;">
+            <input onclick="bookSeatNumber(this)" class="seats" type="text"
+                style="background:rgb(45, 45, 45); border: none; margin: 4px;">
+            <input onclick="bookSeatNumber(this)" class="seats" type="text"
+                style="background:rgb(45, 45, 45); border: none; margin: 4px;">
+            <input onclick="bookSeatNumber(this)" class="seats" type="text"
+                style="background:rgb(45, 45, 45); border: none; margin: 4px;">
+            <input onclick="bookSeatNumber(this)" class="seats" type="text"
+                style="background:rgb(45, 45, 45); border: none; margin: 4px;">
+            <input onclick="bookSeatNumber(this)" class="seats" type="text"
+                style="background:rgb(45, 45, 45); border: none; margin: 4px;">
+            <input onclick="bookSeatNumber(this)" class="seats" type="text"
+                style="background:rgb(45, 45, 45); border: none; margin: 4px;">
+            <input onclick="bookSeatNumber(this)" class="seats" type="text"
+                style="background:rgb(45, 45, 45); border: none; margin: 4px;">
+            <input onclick="bookSeatNumber(this)" class="seats" type="text"
+                style="background:rgb(45, 45, 45); border: none; margin: 4px;">
+            <input onclick="bookSeatNumber(this)" class="seats" type="text"
+                style="background:rgb(45, 45, 45); border: none; margin: 4px;">
+            <input onclick="bookSeatNumber(this)" class="seats" type="text"
+                style="background:rgb(45, 45, 45); border: none; margin: 4px;">
+        </div>
+        <div style="display: flex; flex-direction: row;">
+            <input onclick="bookSeatNumber(this)" class="seats" type="text"
+                style="background:rgb(45, 45, 45); border: none; margin: 4px;">
+            <input onclick="bookSeatNumber(this)" class="seats" type="text"
+                style="background:rgb(45, 45, 45); border: none; margin: 4px;">
+            <input onclick="bookSeatNumber(this)" class="seats" type="text"
+                style="background:rgb(45, 45, 45); border: none; margin: 4px;">
+            <input onclick="bookSeatNumber(this)" class="seats" type="text"
+                style="background:rgb(45, 45, 45); border: none; margin: 4px;">
+            <input onclick="bookSeatNumber(this)" class="seats" type="text"
+                style="background:rgb(45, 45, 45); border: none; margin: 4px;">
+            <input onclick="bookSeatNumber(this)" class="seats" type="text"
+                style="background:rgb(45, 45, 45); border: none; margin: 4px;">
+            <input onclick="bookSeatNumber(this)" class="seats" type="text"
+                style="background:rgb(45, 45, 45); border: none; margin: 4px;">
+            <input onclick="bookSeatNumber(this)" class="seats" type="text"
+                style="background:rgb(45, 45, 45); border: none; margin: 4px;">
+            <input onclick="bookSeatNumber(this)" class="seats" type="text"
+                style="background:rgb(45, 45, 45); border: none; margin: 4px;">
+            <input onclick="bookSeatNumber(this)" class="seats" type="text"
+                style="background:rgb(45, 45, 45); border: none; margin: 4px;">
+            <input onclick="bookSeatNumber(this)" class="seats" type="text"
+                style="background:rgb(45, 45, 45); border: none; margin: 4px;">
+            <input onclick="bookSeatNumber(this)" class="seats" type="text"
+                style="background:rgb(45, 45, 45); border: none; margin: 4px;">
+            <input onclick="bookSeatNumber(this)" class="seats" type="text"
+                style="background:rgb(45, 45, 45); border: none; margin: 4px;">
+            <input onclick="bookSeatNumber(this)" class="seats" type="text"
+                style="background:rgb(45, 45, 45); border: none; margin: 4px;">
+            <input onclick="bookSeatNumber(this)" class="seats" type="text"
+                style="background:rgb(45, 45, 45); border: none; margin: 4px;">
+            <input onclick="bookSeatNumber(this)" class="seats" type="text"
+                style="background:rgb(45, 45, 45); border: none; margin: 4px;">
+        </div>
+        <div style="display: flex; flex-direction: row;">
+            <input onclick="bookSeatNumber(this)" class="seats" type="text"
+                style="background:rgb(45, 45, 45); border: none; margin: 4px;">
+            <input onclick="bookSeatNumber(this)" class="seats" type="text"
+                style="background:rgb(45, 45, 45); border: none; margin: 4px;">
+            <input onclick="bookSeatNumber(this)" class="seats" type="text"
+                style="background:rgb(45, 45, 45); border: none; margin: 4px;">
+            <input onclick="bookSeatNumber(this)" class="seats" type="text"
+                style="background:rgb(45, 45, 45); border: none; margin: 4px;">
+            <input onclick="bookSeatNumber(this)" class="seats" type="text"
+                style="background:rgb(45, 45, 45); border: none; margin: 4px;">
+            <input onclick="bookSeatNumber(this)" class="seats" type="text"
+                style="background:rgb(45, 45, 45); border: none; margin: 4px;">
+            <input onclick="bookSeatNumber(this)" class="seats" type="text"
+                style="background:rgb(45, 45, 45); border: none; margin: 4px;">
+            <input onclick="bookSeatNumber(this)" class="seats" type="text"
+                style="background:rgb(45, 45, 45); border: none; margin: 4px;">
+            <input onclick="bookSeatNumber(this)" class="seats" type="text"
+                style="background:rgb(45, 45, 45); border: none; margin: 4px;">
+            <input onclick="bookSeatNumber(this)" class="seats" type="text"
+                style="background:rgb(45, 45, 45); border: none; margin: 4px;">
+            <input onclick="bookSeatNumber(this)" class="seats" type="text"
+                style="background:rgb(45, 45, 45); border: none; margin: 4px;">
+            <input onclick="bookSeatNumber(this)" class="seats" type="text"
+                style="background:rgb(45, 45, 45); border: none; margin: 4px;">
+            <input onclick="bookSeatNumber(this)" class="seats" type="text"
+                style="background:rgb(45, 45, 45); border: none; margin: 4px;">
+            <input onclick="bookSeatNumber(this)" class="seats" type="text"
+                style="background:rgb(45, 45, 45); border: none; margin: 4px;">
+            <input onclick="bookSeatNumber(this)" class="seats" type="text"
+                style="background:rgb(45, 45, 45); border: none; margin: 4px;">
+            <input onclick="bookSeatNumber(this)" class="seats" type="text"
+                style="background:rgb(45, 45, 45); border: none; margin: 4px;">
+        </div>
+    </div>
+</div>
+{{#if seatstructure}}
+{{#each seatstructure.seatArrangement.seatStructure}}
+<input style="display: none;" class="seat-arrangement" value="{{this}}" type="text">
+{{/each}}
+{{#each seatstructure.seatNumber.seatNumber}}
+<input style="display: none;" class="seat-number" value="{{this}}" type="text">
+{{/each}}
+<input style="display: none;" id="showId" value="{{seatstructure._id}}" type="text">
+{{/if}}
+
+{{#if bookedSeats}}
+{{#each bookedSeats.bookedSeats}}
+<input style="display: none;" class="booked-seats" type="text" value="{{this}}">
+{{/each}}
+{{/if}}
+
+<script>
+
+    var seat = document.getElementsByClassName('seats')
+    var seatArrangement = document.getElementsByClassName('seat-arrangement')
+    var seatNumber = document.getElementsByClassName('seat-number')
+    var bookedSeats = document.getElementsByClassName('booked-seats')
+    var showId = document.getElementById('showId')
+    // seat structure and number
+    for (var i = 0; i < seat.length; i++) {
+        if (seatArrangement[i].value === 'Available_seats') {
+            seat[i].setAttribute('readonly', 'readonly')
+            seat[i].value = seatNumber[i].value
+        } else {
+            seat[i].setAttribute('disabled', 'disabled')
+            seat[i].style.background = '#bfbcbc'
+        }
+    }
+
+    // booked seat
+    for (var i = 0; i < bookedSeats.length; i++) {
+        for (var j = 0; j < seat.length; j++) {
+            if (bookedSeats[i].value === seat[j].value) {
+                seat[j].style.background = '#aa126f'
+            }
+        }
+    }
+
+
+    // select seats for booking
+    function bookSeatNumber(object) {
+        if (object.style.background === 'rgb(170, 18, 111) none repeat scroll 0% 0%' || object.style.background === '#aa126f') {
+            alert('this seat is already booked')
+        } else if (object.style.background === 'green none repeat scroll 0% 0%' || object.style.background === 'green') {
+            object.style.background = 'rgb(45,45,45)'
+            $.ajax({
+                url: '/theater-management/remove-booking-seat',
+                method: 'post',
+                data: {
+                    selectedNumber: object.value,
+                    showId: showId.value
+                },
+                success:(response) => {
+                }
+            })
+        } else {
+            object.style.background = 'green'
+            $.ajax({
+                url: '/theater-management/add-booking-seat',
+                method: 'post',
+                data: {
+                    selectedNumber: object.value,
+                    showId: showId.value
+                },
+                success: (response) => {
+                    console.log(response,'sdfsdf')
+                    if(response==='alreadyBooked'){
+                        alert('This seat is now booked from your site please give another ticket')
+                     location.reload()
+                    }
+                }
+            })
+        }
+    }
+
+</script>

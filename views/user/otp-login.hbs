@@ -1,0 +1,27 @@
+<section style="margin-top: 100px;" class="w3l-loginhny py-5">
+    <!-- login -->
+    <div class="container py-lg-3">
+        <div class="w3l-hny-login">
+            <div class="w3l-hny-login-info">
+                <div style="display: flex; justify-content: center;">
+                     <h2>Login with Otp</h2>
+                </div>
+                {{#if userInvalidPhoneNumberOtplogin}}
+                <label style="color: rgb(145, 15, 15);" for="">Invalid phone number</label>
+                {{/if}}
+                {{#if userLoginOtpError}}
+                <label style="color: rgb(145, 15, 15);" for="">Invalid otp please try again later</label>
+                {{/if}}
+                <form action="/user-otp-login" id="userOtpValidateLogin" method="post">
+                    <div class="input-group">
+                        <label for="">Phone</label>
+                        <input  style="-moz-appearance: textfield;" type="number" name="phone" placeholder=" "
+                            autofocus>
+                    </div>
+                    <button class="btn read-button btn-login" type="submit">login</button>
+                </form>
+                <p class="account1">Login with  <a href="/login">Email</a></p>
+            </div>
+        </div>
+    </div>
+</section>

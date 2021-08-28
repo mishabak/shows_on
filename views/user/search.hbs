@@ -1,0 +1,210 @@
+<section class="w3l-albums py-5" id="projects">
+	<div class="container py-lg-4">
+		<div class="row">
+			<div class="col-lg-12 mx-auto">
+				<!--Horizontal Tab-->
+				<div id="parentHorizontalTab">
+					<ul class="resp-tabs-list hor_1">
+
+						
+						<div class="clear"></div>
+					</ul>
+					<div class="resp-tabs-container hor_1">
+						<div class="albums-content">
+							<div class="row">
+								<!--/set1-->
+								{{#each genre}}
+								<div class=" col-12 col-sm-6 col-lg-4 new-relise-gd mt-lg-0 mt-0 pro-61">
+									<div class="slider-info">
+										<div class="img-circle">
+											<a href="/single-view/{{this._id}}">
+												<img src="/movieImages/{{this._id}}Poster_photo.jpg" class="img-fluid"
+													alt="author image">
+												{{!-- <div class="overlay-icon">
+													<span class="fa fa-play video-icon" aria-hidden="true"></span>
+												</div> --}}
+											</a>
+										</div>
+										<div class="message">
+											<p>{{this.Language}}</p>
+											<a class="author-book-title" >{{this.Movie}}</a>
+											<h4> <span class="post"><span class="fa fa-clock-o"> </span> {{this.Hours}} hours
+												</span>
+												{{!-- <span class="post fa fa-heart text-right"></span> --}}
+											</h4>
+										</div>
+									</div>
+								</div>
+								{{/each}}
+                              
+								{{#if movies}}
+								<div class=" col-12 col-sm-6 col-lg-4 new-relise-gd mt-lg-0 mt-0 pro-61">
+									<div class="slider-info">
+										<div class="img-circle">
+											<a href="/single-view/{{movies._id}}">
+												<img src="/movieImages/{{movies._id}}Poster_photo.jpg" class="img-fluid"
+													alt="author image">
+												{{!-- <div class="overlay-icon">
+													<span class="fa fa-play video-icon" aria-hidden="true"></span>
+												</div> --}}
+											</a>
+										</div>
+										<div class="message">
+											<p>{{movies.Language}}</p>
+											<a class="author-book-title" >{{movies.Movie}}</a>
+											<h4> <span class="post"><span class="fa fa-clock-o"> </span> {{movies.Hours}} hours
+												</span>
+												{{!-- <span class="post fa fa-heart text-right"></span> --}}
+											</h4>
+										</div>
+									</div>
+								</div>
+								{{/if}}
+								{{#each theaters}}
+								<div class=" col-12 col-sm-6 col-lg-4 new-relise-gd mt-lg-0 mt-0 pro-61">
+									<div class="slider-info">
+										<div class="img-circle">
+											<a href="/single-view/{{this.movies._id}}">
+												<img src="/movieImages/{{this.movies._id}}Poster_photo.jpg" class="img-fluid"
+													alt="author image">
+												{{!-- <div class="overlay-icon">
+													<span class="fa fa-play video-icon" aria-hidden="true"></span>
+												</div> --}}
+											</a>
+										</div>
+										<div class="message">
+											<p>{{this.movies.Language}}</p>
+											<a class="author-book-title" >{{this.movies.Movie}}</a>
+											<h4> <span class="post"><span class="fa fa-clock-o"> </span> {{this.movies.Hours}} hours
+												</span>
+												{{!-- <span class="post fa fa-heart text-right"></span> --}}
+											</h4>
+										</div>
+									</div>
+								</div>
+								{{/each}}
+								{{#each keyWord}}
+								<div class=" col-12 col-sm-6 col-lg-4 new-relise-gd mt-lg-0 mt-0 pro-61">
+									<div class="slider-info">
+										<div class="img-circle">
+											<a href="/single-view/{{this._id}}">
+												<img src="/movieImages/{{this._id}}Poster_photo.jpg" class="img-fluid"
+													alt="author image">
+												{{!-- <div class="overlay-icon">
+													<span class="fa fa-play video-icon" aria-hidden="true"></span>
+												</div> --}}
+											</a>
+										</div>
+										<div class="message">
+											<p>{{this.Language}}</p>
+											<a class="author-book-title" >{{this.Movie}}</a>
+											<h4> <span class="post"><span class="fa fa-clock-o"> </span> {{this.Hours}} hours
+												</span>
+												{{!-- <span class="post fa fa-heart text-right"></span> --}}
+											</h4>
+										</div>
+									</div>
+								</div>
+								{{/each}}
+
+								{{#if theaters}}
+								{{else}}
+								{{#if genre}}
+								{{else}}
+								{{#if movies}}
+								{{else}}
+								{{#if keyWord}}
+								{{else}}
+								<div class=" col-12 col-sm-6 col-lg-4 new-relise-gd mt-lg-0 mt-0 pro-61">
+									<div class="slider-info p-4">
+										<h3> not found</h3>
+									</div>
+								</div>
+								{{/if}}
+								{{/if}}
+								{{/if}}
+								{{/if}}
+                                
+                                
+
+								<!--//set1-->
+							</div>
+						</div>
+						{{!-- <div class="albums-content">
+							<div class="row">
+								<!--/set1-->
+								<div class=" col-12 col-sm-6 col-lg-4 new-relise-gd mt-lg-0 mt-0">
+									<div class="slider-info">
+										<div class="img-circle">
+											<a href="/events">
+												<img src="/admin/images/party_1.jpg" class="img-fluid"
+													alt="author image">
+												<div class="overlay-icon">
+													<span class="fa fa-play video-icon" aria-hidden="true"></span>
+												</div>
+											</a>
+										</div>
+										<div class="message">
+											<p>English</p>
+											<a class="author-book-title" href="/events">coming soon</a>
+											<h4> <span class="post"><span class="fa fa-clock-o"> </span> 2 Hr
+													4min
+												</span>
+												<span class="post fa fa-heart text-right"></span>
+											</h4>
+										</div>
+									</div>
+								</div>
+								<div class=" col-12 col-sm-6 col-lg-4 new-relise-gd mt-lg-0 mt-0">
+									<div class="slider-info">
+										<div class="img-circle">
+											<a href="/events">
+												<img src="/admin/images/party_1.jpg" class="img-fluid"
+													alt="author image">
+												<div class="overlay-icon">
+													<span class="fa fa-play video-icon" aria-hidden="true"></span>
+												</div>
+											</a>
+										</div>
+										<div class="message">
+											<p>English</p>
+											<a class="author-book-title" href="/events">coming soon</a>
+											<h4> <span class="post"><span class="fa fa-clock-o"> </span> 2 Hr
+													4min
+												</span>
+												<span class="post fa fa-heart text-right"></span>
+											</h4>
+										</div>
+									</div>
+								</div>
+								<div class=" col-12 col-sm-6 col-lg-4 new-relise-gd mt-lg-0 mt-0">
+									<div class="slider-info">
+										<div class="img-circle">
+											<a href="/events">
+												<img src="/admin/images/party_1.jpg" class="img-fluid"
+													alt="author image">
+												<div class="overlay-icon">
+													<span class="fa fa-play video-icon" aria-hidden="true"></span>
+												</div>
+											</a>
+										</div>
+										<div class="message">
+											<p>English</p>
+											<a class="author-book-title" href="/events">coming soon</a>
+											<h4> <span class="post"><span class="fa fa-clock-o"> </span> 2 Hr
+													4min
+												</span>
+												<span class="post fa fa-heart text-right"></span>
+											</h4>
+										</div>
+									</div>
+								</div>
+
+							</div>
+						</div> --}}
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</section>

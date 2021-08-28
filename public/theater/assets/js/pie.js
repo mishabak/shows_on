@@ -1,30 +1,38 @@
+var totalMovies =document.getElementById('totalMovie').value
+var totalBooking = document.getElementById('todayBooking').value 
+var totalUsers = document.getElementById('totalUsers').value 
 
+// randomScalingFactor(),
+// randomScalingFactor(),
+// randomScalingFactor(),
+// randomScalingFactor(),
+// randomScalingFactor(),
+// window.chartColors.danger,
+// window.chartColors.grey,
+// 'danger',
+// 'grey'
 var config = {
     type: 'pie',
     data: {
         datasets: [{
             data: [
-                randomScalingFactor(),
-                randomScalingFactor(),
-                randomScalingFactor(),
-                randomScalingFactor(),
-                randomScalingFactor(),
+                totalMovies,
+                totalBooking,
+                totalUsers
             ],
             backgroundColor: [
                 window.chartColors.navy,
                 window.chartColors.blue,
                 window.chartColors.purple,
-                window.chartColors.danger,
-                window.chartColors.grey,
+               
             ],
             label: 'Dataset 1'
         }],
         labels: [
-            'navy',
-            'blue',
-            'purple',
-            'danger',
-            'grey'
+            'Total Movies',
+            'Today Bookings',
+            'Total Users',
+            
         ]
     },
     options: {

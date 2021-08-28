@@ -1,0 +1,172 @@
+<section class="container">
+    <div style="display: flex; justify-content: center;  width: 100%; margin: 100px;" class="row">
+        <h2 style="margin: 30px;">ADD MOVIE INTO YOUR SCREEN</h2>
+        <div style="height: 350px; overflow-y: auto; width: 650px; border-radius: 6px; box-shadow: 0px 0px 5px 0.9px rgb(202, 202, 202); "
+            class=" bg-light">
+            <table id="datatablesSimple" class="table ">
+                <thead>
+                    <tr>
+                        <th scope="col">Screen</th>
+                        <th scope="col">Add movie</th>
+                        <th scope="col">Expiry Date</th>
+                        <th scope="col">Delete</th>
+                        {{!-- <th scope="col">Save</th> --}}
+
+                    </tr>
+                </thead>
+                <tbody>
+                    {{#each availableScreen}}
+                    <tr>
+                        <td> <b>{{this.Screen}}</b></td>
+                        <td><button onclick="showModal('{{this._id}}')" class="btn btn-dark ">choose</button></td>
+                        <td><input class="exp-date" id="exp-date{{this._id}}" value="{{this.expDate}}" onchange="expiryMovieDate(this,'{{this._id}}')" type="date"></td>
+                        {{#if this.movieId}}
+                        <td scope="col"><button onclick="deleteMovieOnScreen('{{this._id}}','{{this.movieId}}')"
+                                class="btn btn-danger">delete</button></td>
+                        {{!-- <td><button class="btn btn-success">save</button></td> --}}
+                        {{else}}
+
+                        {{/if}}
+                    </tr>
+                    {{/each}}
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+
+</section>
+
+{{!--modal --}}
+<div id="movie-selection" style="
+display: none;
+padding-left: 250px;
+width: 100%; 
+height: 100%;  
+top: 0; 
+background-color: rgba(0, 0, 0, 0.611);
+position: fixed; 
+justify-content: center; 
+align-items: center;">
+    <div style="
+    overflow-x: auto;
+    padding: 10px;
+    width: 400px; 
+    height: 300px; 
+    border-radius: 8px; 
+    background: rgb(214, 214, 214);
+    box-shadow: 0px 0px 2px 0.9px rgb(202, 202, 202)">
+        <h3 style="text-align: center;">AVAILABLE MOVIES<span id="span" style="float: right;">&times;</span></h3>
+
+        <table id="datatablesSimple" class="table ">
+            <thead>
+                <tr>
+                    <th scope="col">Movies</th>
+                    <th style="float: right;" scope="col">Option </th>
+                    {{!-- <th scope="col">Save</th> --}}
+
+                </tr>
+            </thead>
+            <tbody>
+                {{#each allMovies}}
+                <tr>
+                    <td> <b>{{this.Movie}}</b></td>
+                    <td style="float: right;"><button id="save-btn" onclick="saveMovieInToScreen('{{this._id}}')"
+                            class="btn btn-success ">save</button></td>
+                </tr>
+                {{/each}}
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<script>
+    // for prevent before date
+    $(function () {
+        var dtToday = new Date();
+        var month = dtToday.getMonth() + 1;
+        var day = dtToday.getDate();
+        var year = dtToday.getFullYear();
+        if (month < 10)
+            month = '0' + month.toString();
+        if (day < 10)
+            day = '0' + day.toString();
+        var maxDate = year + '-' + month + '-' + day;
+        $('.exp-date').attr('min', maxDate);
+    });
+    // save movie in to related screen 
+    var screenId = null ;
+    var expDate ;
+    function showModal(theater_Id) {
+     expDate  = document.getElementById('exp-date'+theater_Id).value
+        if (expDate !== ''){
+              screenId = theater_Id
+        document.getElementById('movie-selection').style.display = 'flex'
+        }else{
+            alert('please enter expiry date then try again')
+        }   
+    }
+// edit option for expDate ---->
+function expiryMovieDate(availableDate,screenId){
+    if(availableDate.value!==''){
+        $.ajax({
+            url:'/theater-management/editScreenDate',
+            method:'post',
+            data:{
+                editDate:availableDate.value,
+                screenId
+            },
+            success:()=>{
+
+            }
+        })
+    }
+}
+
+    //for modal controll
+    var movie_selection = document.getElementById('movie-selection')
+    var span = document.getElementById('span')
+    window.onclick = (event) => {
+        if (event.target === movie_selection || event.target === span) {
+            document.getElementById('movie-selection').style.display = 'none'
+        }
+    }
+
+    function saveMovieInToScreen(movieId) {
+        var confirmation = confirm('You want to add this movie in to your screen')
+        if (confirmation === true) {
+            document.getElementById('movie-selection').style.display = 'none'
+            $.ajax({
+                url: '/theater-management/add-movie-to-screen',
+                method: 'post',
+                data: {
+                    movieId,
+                    screenId,
+                    expDate
+                }, success: (response) => {
+                    location.reload()
+                }
+            })
+        }
+    }
+
+    function deleteMovieOnScreen(screenId, movieId) {
+        var confirmation = confirm('do you want to delete')
+        if (confirmation === true) {
+            $.ajax({
+                url: '/theater-management/delete-movie-to-screen',
+                data: {
+                    screenId,
+                    movieId
+                },
+                method: 'post',
+                success: (response) => {
+                    location.reload()
+                }
+            })
+        }
+    }
+    
+
+
+</script>

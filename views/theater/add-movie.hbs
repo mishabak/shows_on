@@ -1,0 +1,479 @@
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.5.11/cropper.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.5.11/cropper.js"></script>
+<style>
+    .mb-3 label {
+        color: white;
+    }
+    .error {
+        min-height: 0%;
+        background: #636568;
+    }
+</style>
+<section style="margin-left: 60px; margin-top: 100px;">
+    <div style="display: flex; justify-content: center;  ">
+        <form enctype="multipart/form-data" method="POST" action="/theater-management/add-movies" id="add-movie"
+            style="background: rgb(99, 101, 104); padding: 20px; border-radius: 4px; width: 760px; ">
+            <div class="form-row">
+                <div class="col-md-4 mb-3">
+                    <label for="validationDefault01">Movie</label>
+                    <input type="text" class="form-control" name="Movie" placeholder="Movie">
+                    <label id="Movie-error" style="display: none; color: rgb(123, 15, 15);font-size: 13px;"
+                        class="error" for="Movie">This field is required.</label>
+                </div>
+                <div class="col-md-2 mb-3">
+                    <label for="validationDefaultUsername">Hours</label>
+                    <input style="-moz-appearance: textfield;" name="Hours"  placeholder="1.30" class="form-control"
+                        type="number">
+                    <label id="Hours-error" style="display: none; color: rgb(123, 15, 15); font-size: 10px;"
+                        class="error" for="Hours">This field is required.</label>
+                </div>
+                <div class="col-md-6 mb-3">
+                    <label for="validationDefault03">Teaser Link</label>
+                    <input name="Teaser" type="text" class="form-control" id="validationDefault03"
+                        placeholder="https://www.youtube.com/embed/odM92ap8_c0">
+                    <label id="validationDefault03-error"
+                        style="display: none; color: rgb(123, 15, 15);font-size: 13px;" class="error"
+                        for="validationDefault03">This field is required.</label>
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="col-md-6">
+                    <div class="row">
+                        <div class="col-md-6 mb-3">
+                            <label for="validationDefault02">Language</label>
+                            <select style="-webkit-appearance: none;" class="form-control" name="Language">
+                                <option value="English">English</option>
+                                <option value="Malayalam">Malayalam</option>
+                                <option value="Tamil">Tamil</option>
+                                <option value="Hindi">Hindi</option>
+                            </select>
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <label for="validationDefault02">Type</label>
+                            <select  style="-webkit-appearance: none;" size="4" class="form-control" name="Type" id="">
+                                <option value="Comedy">Comedy</option>
+                                <option value="Romantic">Romantic</option>
+                                <option value="Thriller">Thriller</option>
+                                <option value="Horror">Horror</option>
+                                <option value="Drama">Drama</option>
+                                 <option value="Family">Family</option>
+                                 <option value="Action">Action</option>
+                            </select>
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <div style="display: flex;flex-direction: column;">
+                                <span style="display: flex; flex-direction: row;"><label>Realesed___</label>
+                                    <input name="Movie_state" value="Realesed" type="radio"></span>
+                            </div>
+                        </div>
+                        <div class="col-6 mb-3">
+                            <span style="display: flex; flex-direction: row;"> <label> Upcoming__ </label>
+                                <input name="Movie_state" value="Up_coming" type="radio"></span>
+                        </div>
+                        <div class="col-12">
+                            <label id="Movie_state-error"
+                                style="display: none; color: rgb(123, 15, 15);font-size: 13px;" class="error"
+                                for="Movie_state">This field is required.</label>
+                        </div>
+                        <div class="col-6 mb-3">
+                            <label>Cover Photo</label>
+                            <input name="Cover_photo" id="image1" onchange="return filevalidationCoverPhoto()"
+                                class="form-control" type="file">
+                            <label id="image1-error" style="display: none; color: rgb(123, 15, 15);font-size: 13px;"
+                                class="error" for="image1">This field is required.</label>
+                        </div>
+                        <div class="col-6 mb-3">
+                            <label>Poster</label>
+                            <input name="Poster_photo" id="image2" onchange="return filevalidationPosterPhoto()"
+                                class="form-control" type="file">
+                            <label id="image2-error" style="display: none; color: rgb(123, 15, 15);font-size: 13px;"
+                                class="error" for="image2">This field is required.</label>
+                        </div>
+                        <div class="col-6 mb-3 ">
+                            <div id="preview1" style="overflow: hidden ; display: none; width: 135px; height: 65px;"
+                                class="preview1 ">
+
+                            </div>
+                        </div>
+                        <div class="col-6 mb-3 ">
+                            <div style="display: flex; justify-content: center  ; ">
+                                <div id="preview2" style="overflow: hidden ; display: none; width: 67px; height: 100px;"
+                                    class="preview2">
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="col-md-6  mb-3">
+                        <label for="validationDefault03">Description</label>
+                        <textarea name="Description" id="" cols="30" rows="5"></textarea>
+                        <label id="Description-error" style="display: none; color: rgb(123, 15, 15);font-size: 13px;"
+                            class="error" for="Description">This field is required.</label>
+                    </div>
+                </div>
+
+
+
+                <div class="col-md-6">
+                    <div class="row">
+
+                        <div style="display: flex; justify-content: center;" class="col-12">
+                            <h3 class="text-light">Add Cast Images
+                                <hr>
+                            </h3>
+                        </div>
+
+                        <div class="col-6 mb-3">
+                            <div id="cast-preview1" style="width:70px; height: 70px;display: none;overflow: hidden;"
+                                class="cast-preview1"></div>
+
+                            <label>Cast_1</label>
+                            <input name="Cast_1" id="cast1" onchange="return addNewCast(1)" class="form-control"
+                                type="file">
+                            <label id="cast1-error" style="display: none; color: rgb(123, 15, 15);font-size: 13px;"
+                                class="error" for="cast1">This field is required.</label>
+                        </div>
+                        <div class="col-6 mb-3">
+                            <div id="cast-preview2" style="width:70px; height: 70px;display: none;overflow: hidden;"
+                                class="cast-preview2"></div>
+                            <label>Cast_2</label>
+                            <input name="Cast_2" id="cast2" onchange="return addNewCast(2)" class="form-control"
+                                type="file">
+                            <label id="cast2-error" style="display: none; color: rgb(123, 15, 15);font-size: 13px;"
+                                class="error" for="cast2">This field is required.</label>
+                        </div>
+                        <div class="col-6 mb-3">
+                            <div id="cast-preview3" style="width:70px; height: 70px;display: none;overflow: hidden;"
+                                class="cast-preview3"></div>
+                            <label>Cast_3</label>
+                            <input name="Cast_3" id="cast3" onchange="return addNewCast(3)" class="form-control"
+                                type="file">
+                            <label id="cast3-error" style="display: none; color: rgb(123, 15, 15);font-size: 13px;"
+                                class="error" for="cast3">This field is required.</label>
+                        </div>
+                        <div class="col-6 mb-3">
+                            <div id="cast-preview4" style="width:70px; height: 70px;display: none;overflow: hidden;"
+                                class="cast-preview4"></div>
+                            <label>Cast_4</label>
+                            <input name="Cast_4" id="cast4" onchange="return addNewCast(4)" class="form-control"
+                                type="file">
+                            <label id="cast4-error" style="display: none; color: rgb(123, 15, 15);font-size: 13px;"
+                                class="error" for="cast4">This field is required.</label>
+                        </div>
+                        <div class="col-6 mb-3">
+                            <div id="cast-preview5" style="width:70px; height: 70px;display: none;overflow: hidden;"
+                                class="cast-preview5"></div>
+                            <label>Cast_5</label>
+                            <input name="Cast_5" id="cast5" onchange="return addNewCast(5)" class="form-control"
+                                type="file">
+                            <label id="cast5-error" style="display: none; color: rgb(123, 15, 15);font-size: 13px;"
+                                class="error" for="cast5">This field is required.</label>
+                        </div>
+                        <div class="col-6 mb-3">
+                            <div id="cast-preview6" style="width:70px; height: 70px; display: none; overflow: hidden;"
+                                class="cast-preview6"></div>
+                            <label>Cast_6</label>
+                            <input name="Cast_6" id="cast6" onchange="return addNewCast(6)" class="form-control"
+                                type="file">
+                            <label id="cast6-error" style="display: none; color: rgb(123, 15, 15);font-size: 13px;"
+                                class="error" for="cast6">This field is required.</label>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="row">
+                        <div style="display: flex; justify-content: center;" class="col-12">
+                            <h3 class="text-light">Add Cast Names
+                                <hr>
+                            </h3>
+                        </div>
+                        <div class="col-6 mb-3">
+                            <label for="">Cast_1</label>
+                            <input class="form-control" name="Cast_1_name" type="text">
+                            <label id="Cast_1_name-error"
+                                style="display: none; color: rgb(123, 15, 15);font-size: 13px;" class="error"
+                                for="Cast_1_name">This field is required.</label>
+                        </div>
+                        <div class="col-6 mb-3">
+                            <label for="">Cast_2</label>
+                            <input class="form-control" name="Cast_2_name" type="text">
+                            <label id="Cast_2_name-error"
+                                style="display: none; color: rgb(123, 15, 15);font-size: 13px;" class="error"
+                                for="Cast_2_name">This field is required.</label>
+                        </div>
+                        <div class="col-6 mb-3">
+                            <label for="">Cast_3</label>
+                            <input class="form-control" name="Cast_3_name" type="text">
+                            <label id="Cast_3_name-error"
+                                style="display: none; color: rgb(123, 15, 15);font-size: 13px;" class="error"
+                                for="Cast_3_name">This field is required.</label>
+                        </div>
+                        <div class="col-6 mb-3">
+                            <label for="">Cast_4</label>
+                            <input class="form-control" name="Cast_4_name" type="text">
+                            <label id="Cast_4_name-error"
+                                style="display: none; color: rgb(123, 15, 15);font-size: 13px;" class="error"
+                                for="Cast_4_name">This field is required.</label>
+                        </div>
+                        <div class="col-6 mb-3">
+                            <label for="">Cast_5</label>
+                            <input class="form-control" name="Cast_5_name" type="text">
+                            <label id="Cast_5_name-error"
+                                style="display: none; color: rgb(123, 15, 15);font-size: 13px;" class="error"
+                                for="Cast_5_name">This field is required.</label>
+                        </div>
+                        <div class="col-6 mb-3">
+                            <label for="">Cast_6</label>
+                            <input class="form-control" name="Cast_6_name" type="text">
+                            <label id="Cast_6_name-error"
+                                style="display: none; color: rgb(123, 15, 15);font-size: 13px;" class="error"
+                                for="Cast_6_name">This field is required.</label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div style="display: flex; width: 100%; justify-content: center;">
+                <button style="width: 200px;" class="btn bg-dark text-light" type="submit">Submit</button>
+            </div>
+        </form>
+        <button style="display: none;" class="btn btn-dark " id="crop-btn">crop</button>
+        <div style="width: 400px ; display: none;" id="image-box">
+        </div>
+    </div>
+</section>
+
+
+<script>
+    function filevalidationCoverPhoto() {
+        var fileInput =
+            document.getElementById('image1');
+        var filePath = fileInput.value;
+        // Allowing file type
+        var allowedExtensions =
+            /(\.jpg)$/i;
+        if (!allowedExtensions.exec(filePath)) {
+            alert('Please choose an jpg image file');
+            fileInput.value = '';
+            return false;
+        }
+        else {
+            // image-box is the id of the div element that will store our cropping image preview
+            const imagebox = document.getElementById('image-box')
+            // crop-btn is the id of button that will trigger the event of change original file with cropped file.
+            const crop_btn = document.getElementById('crop-btn')
+            // id_image is the id of the input tag where we will upload the image
+            const input = document.getElementById('image1')
+            document.getElementById('preview1').style.display = 'block'
+            var filePath = input.value;
+            // Getting image file object from the input variable
+            const img_data = input.files[0]
+            // createObjectURL() static method creates a DOMString containing a URL representing the object given in the parameter.
+            // The new object URL represents the specified File object or Blob object.
+            const url = URL.createObjectURL(img_data)
+            // Creating a image tag inside imagebox which will hold the cropping view image(uploaded file) to it using the url created before.
+            imagebox.innerHTML = `<img src="${url}" id="image" style="width:100%;">`
+            // Storing that cropping view image in a variable
+            const image = document.getElementById('image')
+            // Displaying the image box
+            document.getElementById('image-box').style.display = 'block'
+            // Displaying the Crop buttton
+            document.getElementById('crop-btn').style.display = 'block'
+            // Hiding the Post button
+            //   document.getElementById('add').style.display = 'none'
+            // Creating a croper object with the cropping view image
+            // The new Cropper() method will do all the magic and diplay the cropping view and adding cropping functionality on the website
+            // For more settings, check out their official documentation at https://github.com/fengyuanchen/cropperjs
+            const cropper = new Cropper(image, {
+                autoCropArea: 1,
+                viewMode: 1,
+                scalable: false,
+                zoomable: false,
+                movable: false,
+                aspectRatio: 1680 / 800,
+                preview: '.preview1',
+                minCropBoxWidth: 120,
+                minCropBoxHeight: 120,
+            })
+            // When crop button is clicked this event will get triggered
+            crop_btn.addEventListener('click', () => {
+                // This method coverts the selected cropped image on the cropper canvas into a blob object
+                cropper.getCroppedCanvas().toBlob((blob) => {
+                    // Gets the original image data
+                    let fileInputElement = document.getElementById('image1');
+                    // Make a new cropped image file using that blob object, image_data.name will make the new file name same as original image
+                    let file = new File([blob], img_data.name, { type: "image/*", lastModified: new Date().getTime() });
+                    // Create a new container
+                    let container = new DataTransfer();
+                    // Add the cropped image file to the container
+                    container.items.add(file);
+                    // Replace the original image file with the new cropped image file
+                    fileInputElement.files = container.files;
+                    // Hide the cropper box
+                    document.getElementById('image-box').style.display = 'none'
+                    // Hide the crop button
+                    document.getElementById('crop-btn').style.display = 'none'
+                    // Display the Post button
+                    document.getElementById('add').style.display = 'block'
+                });
+            })
+        }
+    }
+    // for Poster Photo crop
+    function filevalidationPosterPhoto() {
+        var fileInput =
+            document.getElementById('image2');
+        var filePath = fileInput.value;
+        // Allowing file type
+        var allowedExtensions =
+            /(\.jpg)$/i;
+        if (!allowedExtensions.exec(filePath)) {
+            alert('Please choose an jpg image file');
+            fileInput.value = '';
+            return false;
+        }
+        else {
+            // image-box is the id of the div element that will store our cropping image preview
+            const imagebox = document.getElementById('image-box')
+            // crop-btn is the id of button that will trigger the event of change original file with cropped file.
+            const crop_btn = document.getElementById('crop-btn')
+            // id_image is the id of the input tag where we will upload the image
+            const input = document.getElementById('image2')
+            document.getElementById('preview2').style.display = 'block'
+
+            var filePath = input.value;
+            // Getting image file object from the input variable
+            const img_data = input.files[0]
+            // createObjectURL() static method creates a DOMString containing a URL representing the object given in the parameter.
+            // The new object URL represents the specified File object or Blob object.
+            const url = URL.createObjectURL(img_data)
+            // Creating a image tag inside imagebox which will hold the cropping view image(uploaded file) to it using the url created before.
+            imagebox.innerHTML = `<img src="${url}" id="image" style="width:100%;">`
+            // Storing that cropping view image in a variable
+            const image = document.getElementById('image')
+            // Displaying the image box
+            document.getElementById('image-box').style.display = 'block'
+            // Displaying the Crop buttton
+            document.getElementById('crop-btn').style.display = 'block'
+            // Hiding the Post button
+            //   document.getElementById('add').style.display = 'none'
+            // Creating a croper object with the cropping view image
+            // The new Cropper() method will do all the magic and diplay the cropping view and adding cropping functionality on the website
+            // For more settings, check out their official documentation at https://github.com/fengyuanchen/cropperjs
+            const cropper = new Cropper(image, {
+                autoCropArea: 1,
+                viewMode: 1,
+                scalable: false,
+                zoomable: false,
+                movable: false,
+                aspectRatio: 250 / 350,
+                preview: '.preview2',
+                minCropBoxWidth: 120,
+                minCropBoxHeight: 120,
+            })
+            // When crop button is clicked this event will get triggered
+            crop_btn.addEventListener('click', () => {
+                // This method coverts the selected cropped image on the cropper canvas into a blob object
+                cropper.getCroppedCanvas().toBlob((blob) => {
+                    // Gets the original image data
+                    let fileInputElement = document.getElementById('image2');
+                    // Make a new cropped image file using that blob object, image_data.name will make the new file name same as original image
+                    let file = new File([blob], img_data.name, { type: "image/*", lastModified: new Date().getTime() });
+                    // Create a new container
+                    let container = new DataTransfer();
+                    // Add the cropped image file to the container
+                    container.items.add(file);
+                    // Replace the original image file with the new cropped image file
+                    fileInputElement.files = container.files;
+                    // Hide the cropper box
+                    document.getElementById('image-box').style.display = 'none'
+                    // Hide the crop button
+                    document.getElementById('crop-btn').style.display = 'none'
+                    // Display the Post button
+                    document.getElementById('add').style.display = 'block'
+                });
+            })
+        }
+    }
+
+    // for Poster Photo crop
+    function addNewCast(cast) {
+        var fileInput =
+            document.getElementById('cast' + cast);
+        console.log(fileInput)
+
+        var filePath = fileInput.value;
+        // Allowing file type
+        var allowedExtensions =
+            /(\.jpg)$/i;
+        if (!allowedExtensions.exec(filePath)) {
+            alert('Please choose an jpg image file');
+            fileInput.value = '';
+            return false;
+        }
+        else {
+            // image-box is the id of the div element that will store our cropping image preview
+            const imagebox = document.getElementById('image-box')
+            // crop-btn is the id of button that will trigger the event of change original file with cropped file.
+            const crop_btn = document.getElementById('crop-btn')
+            // id_image is the id of the input tag where we will upload the image
+            const input = document.getElementById('cast' + cast)
+            document.getElementById('cast-preview' + cast).style.display = 'block'
+
+            var filePath = input.value;
+            // Getting image file object from the input variable
+            const img_data = input.files[0]
+            // createObjectURL() static method creates a DOMString containing a URL representing the object given in the parameter.
+            // The new object URL represents the specified File object or Blob object.
+            const url = URL.createObjectURL(img_data)
+            // Creating a image tag inside imagebox which will hold the cropping view image(uploaded file) to it using the url created before.
+            imagebox.innerHTML = `<img src="${url}" id="image" style="width:100%;">`
+            // Storing that cropping view image in a variable
+            const image = document.getElementById('image')
+            // Displaying the image box
+            document.getElementById('image-box').style.display = 'block'
+            // Displaying the Crop buttton
+            document.getElementById('crop-btn').style.display = 'block'
+            // Hiding the Post button
+            //   document.getElementById('add').style.display = 'none'
+            // Creating a croper object with the cropping view image
+            // The new Cropper() method will do all the magic and diplay the cropping view and adding cropping functionality on the website
+            // For more settings, check out their official documentation at https://github.com/fengyuanchen/cropperjs
+            const cropper = new Cropper(image, {
+                autoCropArea: 1,
+                viewMode: 1,
+                scalable: false,
+                zoomable: false,
+                movable: false,
+                aspectRatio: 1 / 1,
+                preview: '.cast-preview' + cast,
+                minCropBoxWidth: 120,
+                minCropBoxHeight: 120,
+            })
+            // When crop button is clicked this event will get triggered
+            crop_btn.addEventListener('click', () => {
+                // This method coverts the selected cropped image on the cropper canvas into a blob object
+                cropper.getCroppedCanvas().toBlob((blob) => {
+                    // Gets the original image data
+                    let fileInputElement = document.getElementById('cast' + cast);
+                    // Make a new cropped image file using that blob object, image_data.name will make the new file name same as original image
+                    let file = new File([blob], img_data.name, { type: "image/*", lastModified: new Date().getTime() });
+                    // Create a new container
+                    let container = new DataTransfer();
+                    // Add the cropped image file to the container
+                    container.items.add(file);
+                    // Replace the original image file with the new cropped image file
+                    fileInputElement.files = container.files;
+                    // Hide the cropper box
+                    document.getElementById('image-box').style.display = 'none'
+                    // Hide the crop button
+                    document.getElementById('crop-btn').style.display = 'none'
+                    // Display the Post button
+                    document.getElementById('add').style.display = 'block'
+                });
+            })
+        }
+    }
+
+</script>

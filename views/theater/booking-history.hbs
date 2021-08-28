@@ -1,0 +1,30 @@
+<script src="https://kit.fontawesome.com/a73f9c0e98.js" crossorigin="anonymous"></script>
+<div class="container table-responsive" style="margin-top: 94px; ">
+    <table style="width: 800px; " id="datatablesSimple" class="table">
+        <thead>
+            <tr>
+                <th scope="col">Screen</th>
+                <th scope="col">Seats</th>
+                <th scope="col">Movie</th>
+                <th scope="col">Date</th>
+                <th scope="col">Price</th>
+            </tr>
+        </thead>
+        <tbody>
+            {{#each bookingHistory}}
+            <tr>
+                <td>{{this.screen}}</td>
+                <td>{{#each seat}}{{this}}, {{/each}}</td>
+                <td>{{this.movie}}</td>
+                <td>{{this.date}}</td>
+                <td>Rs.{{this.price}}</td>
+            </tr>
+            {{/each}}
+        </tbody>
+    </table>
+</div>
+<script>
+    $(document).ready(function () {
+        $('#datatablesSimple').DataTable();
+    });
+</script>

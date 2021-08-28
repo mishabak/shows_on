@@ -9,14 +9,18 @@
   <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
   <meta name="keywords" content="Novus Admin Panel Responsive web template, Bootstrap Web Templates, Flat Web Templates, Android Compatible web template, 
 SmartPhone Compatible web template, free WebDesigns for Nokia, Samsung, LG, SonyEricsson, Motorola web design" />
-  <script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
+  <script
+    type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
   <!-- Bootstrap Core CSS -->
+  <script src="//cdn.datatables.net/1.10.25/js/jquery.dataTables.min.js"></script>
+  <script src="//cdn.datatables.net/1.10.25/css/jquery.dataTables.min.css"></script>
   <link href="/admin/css/bootstrap.css" rel='stylesheet' type='text/css' />
   <!-- Custom CSS -->
   <link href="/admin/css/style.css" rel='stylesheet' type='text/css' />
   <!-- font CSS -->
   <!-- font-awesome icons -->
   <link href="/admin/css/font-awesome.css" rel="stylesheet">
+
   <!-- //font-awesome icons -->
   <!-- js-->
   <script src="/admin/js/jquery-1.11.1.min.js"></script>
@@ -79,9 +83,9 @@ SmartPhone Compatible web template, free WebDesigns for Nokia, Samsung, LG, Sony
   {{/if}}
 
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-     {{!-- country code for mobile verification --}}
-     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.8/css/intlTelInput.css"/>
-   <script src="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.8/js/intlTelInput.min.js"></script>
+  {{!-- country code for mobile verification --}}
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.8/css/intlTelInput.css" />
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.8/js/intlTelInput.min.js"></script>
 </head>
 
 <body>
@@ -1011,20 +1015,22 @@ RIGHT SIDEBAR TOGGLE SECTION
       {{!-- event_owner link --}}
       {{#if event_owner}}
       {{/if}}
+      <script src="https://cdn.jsdelivr.net/jquery.validation/1.16.0/additional-methods.min.js"></script>
       <script src="https://cdn.jsdelivr.net/npm/jquery-validation@1.19.3/dist/jquery.validate.js"></script>
       <script src="/javascript/validate.js"></script>
     </body>
 
-     <script>
-   const phoneInputField = document.querySelector("#phone");
-   const phoneInput = window.intlTelInput(phoneInputField, {
-     utilsScript:
-       "https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.8/js/utils.js",
-   });
-   
+    <script>
+      const phoneInputField = document.querySelector("#phone");
+      const phoneInput = window.intlTelInput(phoneInputField, {
+        utilsScript:
+          "https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.8/js/utils.js",
+      });
 
 
 
-   
- </script>
+
+
+    </script>
+
 </html>

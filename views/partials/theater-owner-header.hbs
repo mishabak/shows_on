@@ -18,7 +18,7 @@
     <!-- //image logo -->
 
     <div class="logo-icon text-center">
-      <a href="index.html" title="logo"><img src="assets/images/logo.png" alt="logo-icon"> </a>
+      <a href="/theater-management" title="logo"><img src="assets/images/logo.png" alt="logo-icon"> </a>
     </div>
     <!-- //logo end -->
 
@@ -26,27 +26,30 @@
 
       <!-- sidebar nav start -->
       <ul class="nav nav-pills nav-stacked custom-nav">
-        <li class="active"><a href="/theater-management"><i class="fa fa-tachometer"></i><span> Dashboard</span></a>
+        <li class=""><a href="/theater-management"><i class="fa fa-tachometer"></i><span> Dashboard</span></a>
         </li>
-        <li class="menu-ldist">
-          <a href="/theater-management/show-management"><i class="fa fa-cogs"></i>
-            <span>Show management</span></a>
+        <li class="menu-list"><a href="#"><i class="fa fa-th"></i>
+            <span>Price management <i class="lnr lnr-chevron-right"></i></span></a>
+          <ul class="sub-menu-list">
+            <li><a href="/theater-management/seat-category">seat category</a></li>
+          </ul>
         </li>
         <li class="menu-list"><a href="#"><i class="fa fa-book"></i>
             <span>Movie management <i class="lnr lnr-chevron-right"></i></span></a>
           <ul class="sub-menu-list">  
             <li><a href="/theater-management/all-movies">All Movies</a></li>
             <li><a href="/theater-management/add-movies">Add movies</a></li>
-             <li><a href="/theater-management/">Upload Movies</a></li>
-            <li><a href="/theater-management/">Uploaded movies</a></li>
+             <li><a href="/theater-management/add-movie-to-screen">Movie screen</a></li>
+            {{!-- <li><a href="/theater-management/">Uploaded movies</a></li> --}}
           </ul>
         </li>
 
         <li class="menu-list"><a href="#"><i class="fa fa-table"></i>
             <span>Seat management <i class="lnr lnr-chevron-right"></i></span></a>
-          <ul class="sub-menu-list">  
-            <li><a href="">Screen-1</a></li>
-            <li><a href="">screen-2</a></li>
+          <ul class="sub-menu-list">
+            {{#each availableScreen}}  
+            <li><a href="/theater-management/seat-arrangement/{{this._id}}">{{this.Screen}}</a></li>
+            {{/each}}
           </ul>
         </li>
 
@@ -57,30 +60,25 @@
         <li class="menu-list"><a href="#"><i class="fa fa-envelope"></i>
             <span>Theater management <i class="lnr lnr-chevron-right"></i></span></a>
           <ul class="sub-menu-list">
-            <li><a href="">Add screen</a> </li>
-            <li><a href="">Edit screen</a></li>
-            <li><a href="">Add shows</a> </li>
-            <li><a href="">Edit shows</a></li>
+            <li><a href="/theater-management/add-screen">Available screen</a> </li>
+            {{!-- <li><a href="/theater-management/add-screen">Edit screen</a></li>
+            <li><a href="/theater-management/add-shows">Add shows</a> </li>
+            <li><a href="/theater-management/add-shows">Edit shows</a></li> --}}
           </ul>
         </li>
-         <li class="menu-list"><a href="#"><i class="fa fa-th"></i>
-            <span>Offline management <i class="lnr lnr-chevron-right"></i></span></a>
+                <li class="menu-list"><a href="#"><i class="fa fa-th"></i>
+            <span>Offline mangement <i class="lnr lnr-chevron-right"></i></span></a>
           <ul class="sub-menu-list">
-            <li><a href="">Add screen</a> </li>
-            <li><a href="">Edit screen</a></li>
-            <li><a href="">Add shows</a> </li>
-            <li><a href="">Edit shows</a></li>
+            {{#each availableScreen}}  
+            <li><a href="/theater-management/offline-management/{{this._id}}">{{this.Screen}}</a></li>
+            {{/each}}
+            
           </ul>
         </li>
-         <li class="menu-list"><a href="#"><i class="fa fa-question-circle"></i>
-            <span>Browse Movie <i class="lnr lnr-chevron-right"></i></span></a>
-          <ul class="sub-menu-list">
-            {{!-- <li><a href="">Add screen</a> </li>
-            <li><a href="">Edit screen</a></li>
-            <li><a href="">Add shows</a> </li>
-            <li><a href="">Edit shows</a></li> --}}
-          </ul>
+        
+        <li class=""><a href="/theater-management/booking-history"><i class="fa fa-book"></i><span>Booking History</span></a>
         </li>
+        
         
         {{!-- <li><a href=""><i class="fa fa-th"></i> <span></span></a></li>
         <li><a href="faq.html"><i class="fa fa-question-circle"></i> <span>Faq's</span></a></li>
@@ -103,6 +101,7 @@
       <!-- //toggle button end -->
     </div>
   </div>
+  
   <!-- //sidebar menu end -->
   <!-- header-starts -->
   <div style="top: 0;" class="header sticky-header">
@@ -110,12 +109,12 @@
     <!-- notification menu start -->
     <div class="menu-right">
       <div class="navbar user-panel-top">
-        <div class="search-box">
+        {{!-- <div class="search-box">
           <form action="#search-results.html" method="get">
             <input class="search-input" placeholder="Search Here..." type="search" id="search">
             <button class="search-submit" value=""><span class="fa fa-search"></span></button>
           </form>
-        </div>
+        </div> --}}
         <div class="user-dropdown-details d-flex">
           {{!-- <div class="profile_details_left">
             <ul class="nofitications-dropdown">
@@ -208,10 +207,14 @@
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" id="dropdownMenu3" aria-haspopup="true"
                   aria-expanded="false">
                   <div class="profile_img">
-                    <img src="assets/images/profileimg.jpg" class="rounded-circle" alt="" />
-                    <div class="user-active">
+                    {{#if theaterDetails.Profile}}
+                     <img src="/profileImages/{{theaterDetails._id}}.jpg" class="rounded-circle" alt="" />
+                    {{else}}
+                    <img src="/images/defaultProfile.png" class="rounded-circle" alt="" />
+                    {{/if}}
+                    {{!-- <div class="user-active">
                       <span></span>
-                    </div>
+                    </div> --}}
                   </div>
                 </a>
                 <ul class="dropdown-menu drp-mnu" aria-labelledby="dropdownMenu3">
@@ -220,9 +223,7 @@
                     
                   </li>
                   <li> <a href="/theater-management/profile"><i class="lnr lnr-user"></i>My Profile</a> </li>
-                  <li> <a href="#"><i class="lnr lnr-users"></i>1k Followers</a> </li>
-                  <li> <a href="#"><i class="lnr lnr-cog"></i>Setting</a> </li>
-                  <li> <a href="#"><i class="lnr lnr-heart"></i>100 Likes</a> </li>
+                  <li> <a href="#"><i class="lnr lnr-cog"></i>Change Password</a> </li>
                   <li class="logout"> <a href="/theater-management/logout"><i class="fa fa-power-off"></i> Logout</a> </li>
                 </ul>
               </li>

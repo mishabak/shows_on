@@ -1,0 +1,62 @@
+<style>
+	.w3l-loginhny {
+		margin-top: 100px;
+	}
+</style>
+<section class="w3l-loginhny py-5">
+	<!-- login -->
+	<div class="container py-lg-3">
+		<div class="w3l-hny-login">
+
+			<div class="w3l-hny-login-info">
+				<div style="display: flex; justify-content: center;">
+					<h2>Sign Up</h2>
+				</div>
+
+				<form id="add-user-sign-up" action="/sign-up" method="post">
+				{{#if signupPhoneError}}
+				<label style="color: rgb(151, 16, 16);" for="">Invalid Otp or number</label>
+				{{/if}}
+					<label style="color: var(--theme-title)">Name</label>
+					<div class="input-group">
+						<input type="text" name="Name" placeholder="">
+						{{#if userDetailsAlreadyExist.name}}
+						<label style="color: rgb(141, 10, 10);" for="">Name is already used</label>
+						{{/if}}
+					</div>
+
+					<label>Email</label>
+					<div class="input-group">
+						<input type="email" name="Email" placeholder="" autofocus>
+						{{#if userDetailsAlreadyExist.email}}
+						<label style="color: rgb(141, 10, 10);" for="">Email is already used</label>
+						{{/if}}
+					</div>
+					<label>Phone</label>
+					<div class="input-group">
+						<input id="phone"  style="-moz-appearance: textfield; margin-right: 90px; padding-left: 50px; " type="number" name="phone" placeholder="">
+						<input id="phone-number" style="display:none;" name="Phone" type="text">
+						{{#if userDetailsAlreadyExist.phone}}
+						<label style="color: rgb(141, 10, 10);" for="">number is already used</label>
+						{{/if}}
+					</div>
+					<label>Password</label>
+					<div class="input-group">
+						<input type="password" name="Password" placeholder="">
+					</div>
+					<div class="login-check">
+					</div>
+					<button class="btn read-button btn-login" id="user-submit" type="submit">Sign Up</button>
+				</form>
+				<p class="account1">Already have an account ? <a href="/login">Login</a></p>
+			</div>
+		</div>
+	</div>
+</section>
+<script>
+	$(document).ready(() => {
+		$('#user-submit').click(() => {
+			document.getElementById('phone-number').value = phoneInput.getNumber()
+		})
+	})
+</script>

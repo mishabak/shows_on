@@ -1,41 +1,96 @@
+<script src="https://kit.fontawesome.com/a73f9c0e98.js" crossorigin="anonymous"></script>
 <style>
-    .error{
+    .error {
         min-height: 0%;
+    }
+
+    .social-auth-link {
+        display: flex;
+        align-items: center;
+
+        border-radius: 4px;
+        height: 50px;
+        width: 365px;
+        background: rgb(48, 48, 48);
+        margin: 20px;
+
+
+    }
+
+    .social-auth-link a {
+        margin-left: 30px;
+        color: white;
+    }
+
+    .social-auth-link i {
+        margin-left: 20px;
+        color: white;
+        font-size: 22px;
+
+
+    }
+
+    .other-option {
+        display: flex;
+        flex-direction: row;
+        margin-left: 20px;
+        margin-bottom: 20px;
     }
 </style>
 <section class="login-form py-md-5 py-3">
-            <div class="card card_border p-md-4">
-                <div class="card-body">
-                    <!-- form -->
-                    <form id="Theater-owner-emailLogin" action="/theater-management/email-login" method="POST">
-                        <div class="login__header text-center mb-lg-5 mb-4">
-                            <h3 class="login__title mb-2"> Login</h3>
-                            <p>Welcome back, login to continue</p>
-                        </div>
-                        {{#if theaterLoginError}}
-                        <p style="color: rgb(150, 26, 26);">Invalid email or password</p>
-                        {{/if}}
-                        <div class="form-group">
-                            <label for="exampleInputEmail1" class="input__label">Email</label>
-                            <input name="Email"  type="email" class="form-control login_text_field_bg input-style"
-                                id="exampleInputEmail1" >
-                        </div>
-                        <div class="form-group">
-                            <label for="exampleInputPassword1" class="input__label">Password</label>
-                            <input name="Password" type="password" class="form-control login_text_field_bg input-style"
-                                id="exampleInputPassword1" >
-                        </div>
-                        <div class="d-flex align-items-center flex-wrap justify-content-between">
-                            <button type="submit" class="btn btn-primary btn-style mt-4">Login now</button>
-                            <p class="signup mt-4">Don’t have an account? <a href="/theater-management/sign-up"
-                                    class="signuplink">Sign
-                                    up</a></p>
-                        </div>
-                        <p  class=" signup mt-4">Login with <a href="/theater-management/otp-login"
-                                    class="signuplink">Otp
-                                    </a></p>
-                    </form>
-                    <!-- //form -->
+    <div class="card card_border p-md-4">
+        <div class="card-body">
+            <!-- form -->
+            <form id="Theater-owner-emailLogin" action="/theater-management/email-login" method="POST">
+
+
+                <div class="social-auth-link">
+                    <i class="fab fa-github"></i>
+                    <a href="/theater-management/auth/github">Login with Github</a>
                 </div>
-            </div>
-        </section>
+                 <div style="background: rgba(151, 11, 18, 0.734);" class="social-auth-link">
+                    <i class="fab fa-google-plus-g"></i>
+                    <a href="/theater-management/auth/google">Login with Google</a>
+                </div>
+                 {{!-- <div style="background-color: rgb(14, 106, 148);" class="social-auth-link">
+                    <i class="fab fa-facebook-f"></i>
+                    <a href="">Login with Facebook</a>
+                </div> --}}
+
+
+                <div class="login__header text-center  ">
+                    <h3 style="color: rgba(16, 15, 15, 0.748);" class="login__title mb-2">Email Login</h3>
+                    
+                </div>
+                {{#if theaterLoginError}}
+                <p style="color: rgb(150, 26, 26);">Invalid email or password</p>
+                {{/if}}
+                {{#if theaterBlock}}
+                <p style="color: rgb(150, 26, 26);">your account is blocked</p>
+                {{/if}}
+                {{#if theaterConfirm}}
+                <p style="color: rgb(150, 26, 26);">You can only access after confirm admin</p>
+                {{/if}}
+                <div class="form-group">
+                    <label for="exampleInputEmail1" class="input__label">Email</label>
+                    <input name="Email" type="email" class="form-control login_text_field_bg input-style"
+                        id="exampleInputEmail1">
+                </div>
+                <div class="form-group">
+                    <label for="exampleInputPassword1" class="input__label">Password</label>
+                    <input name="Password" type="password" class="form-control login_text_field_bg input-style"
+                        id="exampleInputPassword1">
+                </div>
+                <div class="d-flex align-items-center flex-wrap justify-content-between">
+                    <button type="submit" class="btn btn-primary btn-style mt-4">Login now</button>
+                    <p class="signup mt-4">Don’t have an account? <a href="/theater-management/sign-up"
+                            class="signuplink">Sign
+                            up</a></p>
+                </div>
+                <p class=" signup mt-4">Login with <a href="/theater-management/otp-login" class="signuplink">Otp
+                    </a></p>
+            </form>
+            <!-- //form -->
+        </div>
+    </div>
+</section>

@@ -1,0 +1,120 @@
+{{!-- {{#each choosedSeats}}
+<h1 style="margin-top: 70px; color: red;">{{this}}</h1>
+{{/each}} --}}
+<script src="https://kit.fontawesome.com/a73f9c0e98.js" crossorigin="anonymous"></script>
+<script
+  src="https://www.paypal.com/sdk/js?client-id=Abrh3_vEz9uFoCsDVfTUeAYpTp1PZt-ODuq2Tr_iQVQRfGOg87F5Ew8Zx0MP5mhOyGJ0MM24TsFAkuND"></script>
+
+
+<section class="container" style="margin-top: 120px; margin-bottom: 60px;">
+  <div
+    style="background: rgb(236, 238, 237); border-radius: 4px; box-shadow: 0px 0px 3px 0.7px rgb(225, 225, 225);  max-width: 600px;"
+    class="row m-auto">
+    <div style="background:  rgb(243, 245, 244);" class="col-12 col-sm-6  pl-3 pt-3 ">
+      <h5 style="color: rgb(63, 63, 63); margin-bottom: 14px;">{{paymentDetails.theater.Theater_name}} <span
+          style="font-size: 13px;">{{paymentDetails.screen.Screen}}</span></h5>
+
+      <label style="color: rgb(63, 63, 63);" for=""><b>Selected Seats</b></label>
+      <div style="display: flex; color: rgba(69, 165, 69, 0.823);">
+        {{#each choosedSeats.selectedSeat}}
+        <b>
+          <h6>{{this}},</h6>
+        </b>&nbsp;
+        {{/each}}
+
+      </div>
+      <div>
+        <label style="color: rgb(63, 63, 63); margin-top: 11px;" for=""><b>Booking Date & time</b></label>
+        <h6 style="color: rgb(48, 55, 48);">{{choosedSeats.choosedDate}}&nbsp;<span
+            style="font-size: 13px;">{{paymentDetails.Show}}</span></h6>
+      </div>
+    </div>
+    <div class="col-12 col-sm-6  p-3">
+      <div style="margin: 15px; padding: 10px; border: solid 2px ;">
+        <h6 style="color: rgb(38, 33, 33); margin-bottom: 10px;">per seat: <span style="float: right;"> Rs{{paymentDetails.perSeat}}</span>
+        </h6>
+        <h6 style="color: rgb(38, 33, 33);">Total Amount: <span style="float: right;">
+            Rs{{paymentDetails.totalAmount}}</span></h6>
+      </div>
+      <h5 style="margin-top: 12px;">Payment Option</h5>
+      {{!-- <div
+        style="width: 100%; height: 30px; background: rgba(22, 66, 162, 0.795); margin-top: 5px; border-radius: 3px;padding-top: 5px; color: white;">
+        <h6 style="text-align: center;">Paypal</h6>
+      </div>
+      <div
+        style="width: 100%; height: 30px; background: rgba(26, 27, 29, 0.795); margin-top: 5px; border-radius: 3px;padding-top: 5px; color: white;">
+        <h6 style="text-align: center;">Razorpay</h6>
+      </div> --}}
+      <form id="user-payment">
+        <div style="display: flex; flex-direction: row; margin-top: 10px; margin-bottom: 10px;">
+          <label style="margin-right: 10px;" for="">Paypal</label>
+          <input type="radio" style="-webkit-appearance: radio; margin-right: 5px;" name="payment_method"
+            value="Paypal">
+          <label style="margin-right: 10px;" for="">Razorpay</label>
+          <input type="radio" style="-webkit-appearance: radio;" name="payment_method" value="Razorpay">
+        </div>
+        <label id="payment_method-error" style="display: none; color: rgb(136, 33, 33);" class="error"
+          for="payment_method">This field is required.</label>
+        <button style="width: 100%;" type="submit" class="btn btn-success">proceed to pay</button>
+        <div style="margin-top: 5px" id="paypal-button-container"></div>
+      </form>
+    </div>
+  </div>
+</section>
+
+{{!-- for javascript object  --}}
+<section>
+  <input id="total-amount" style="display: none;" value="{{paymentDetails.totalAmount}}" type="text">
+</section>
+<script>
+           var amount = document.getElementById('total-amount').value
+
+  function paymentMethod() {
+    $.ajax({
+      url: '/payment',
+      data: $('#user-payment').serialize(),
+      method: 'post',
+      success: (response) => {
+        if (response === 'Paypal') {
+          paypal.Buttons({
+            // Set up the transaction
+            createOrder: function (data, actions) {
+              return actions.order.create({
+                purchase_units: [{
+                  amount: {
+                    value:amount
+                  }
+                }]
+              });
+            },
+
+            // Finalize the transaction
+            onApprove: function (data, actions) {
+              return actions.order.capture().then(async function (details) {
+               console.log(details)
+                $(document).ready(() => {
+                  $.ajax({
+                    url: '/payment-success/'+details.id,
+                    method: 'get',
+                    success: (response) => {
+                   location.href= '/success-payment/'+details.id
+                    }
+                  })
+                })
+              }).catch(() => {
+                alert('payment error')
+              })
+            }
+          }).render('#paypal-button-container');
+        } else if (response === 'Razorpay') {
+
+        }else {
+          location.href ='/booking-movie/'+response
+        }
+
+      }
+    })
+  }
+
+
+</script>
