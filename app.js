@@ -75,7 +75,7 @@ app.get('/auth/github/callback', passport.authenticate('github', { failureRedire
 passport.use(new GitHubStrategy({
   clientID: process.env.GITHUB_CLIENT_ID,
   clientSecret: process.env.GITHUB_CLIENT_SECRET,
-  callbackURL: "http://localhost:3000/auth/github/callback"
+  callbackURL: "http://mishabak.ml/auth/github/callback"
 }, async function (accessToken, refreshToken, profile, cb) {
   var user = await db.get().collection(collections.USER_COLLECTION).findOne({ Auth_id: profile.id });
   if (!user) {
@@ -150,7 +150,7 @@ app.get('/auth/google/callback', function (req, res, next) {
 passport.use(new GoogleStrategy({
   clientID: process.env.GOOGLE_CLIENT_ID,
   clientSecret: process.env.GOOGLE_CLIENT_SECRET,
-  callbackURL: "http://localhost:3000/auth/google/callback"
+  callbackURL: "http://mishabak.ml/auth/google/callback"
 },
   async function (accessToken, refreshToken, profile, cb) {
     var user = await db.get().collection(collections.USER_COLLECTION).findOne({ Auth_id: profile.id });

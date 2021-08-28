@@ -530,10 +530,9 @@ router.get("/offline-booking/:showId", async (req, res) => {
   var availableScreen = await theaterHelpers.findAvailableScreen(
     req.session.theaterDetails._id
   );
-  var a = "611d3ada1b9fb144789251ad";
-  var seatstructure = await theaterHelpers.offlineBooking(a);
+  var seatstructure = await theaterHelpers.offlineBooking(req.params.showId);
   seatstructure = seatstructure[0];
-  var bookedSeats = await theaterHelpers.BookedSeats(a);
+  var bookedSeats = await theaterHelpers.BookedSeats(req.params.showId);
   res.render("theater/offline-booking", {
     theater_owner: true,
     theaterDetails: req.session.theaterDetails,
