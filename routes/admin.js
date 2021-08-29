@@ -12,7 +12,7 @@ const verifyLogin = (req, res, next) => {
 
 
 // view dashboard page
-router.get('/',async function (req, res, next) {
+router.get('/',verifyLogin,async function (req, res, next) {
  totalMovies =await adminHelpers.totalMovies()
  totalTheaters =  await adminHelpers.totalTheaters()
  totalUsers = await adminHelpers.totalUsers()
@@ -42,10 +42,10 @@ router.get('/logout', (req, res) => {
   req.session.adminLoginError = true
   res.redirect('/admin')
 })
-router.get('/profile',(req,res)=>{
+router.get('/profile',verifyLogin,(req,res)=>{
   res.render('admin/profile',{admin:true,'adminDetails':req.session.admin})
 })
-router.get('/user-management',async(req,res)=>{
+router.get('/user-management',verifyLogin,async(req,res)=>{
  var userDetails = await  adminHelpers.findAllUsers()
   res.render('admin/user-management',{admin:true,'adminDetails':req.session.admin,userDetails})
 })
@@ -58,27 +58,26 @@ router.get('/unblock-user/:userId',(req,res)=>{
   res.redirect('/admin/user-management')
 })
 
-router.get('/theater-management',async(req,res)=>{
+router.get('/theater-management',verifyLogin,async(req,res)=>{
  var theater =await adminHelpers.allTheaterOwners()
  res.render('admin/theater-management',{admin:true,theater,'adminDetails':req.session.admin})
 })
 
 
-router.get('/block-theater/:theaterId',(req,res)=>{
+router.get('/block-theater/:theaterId',verifyLogin,(req,res)=>{
   adminHelpers.blockTheater(req.params.theaterId)
   res.redirect('/admin/theater-management')
 })
-router.get('/unblock-theater/:theaterId',(req,res)=>{
+router.get('/unblock-theater/:theaterId',verifyLogin,(req,res)=>{
   adminHelpers.unBlockTheater(req.params.theaterId)
   res.redirect('/admin/theater-management')
 })
 
-router.get('/view-report',async(req,res)=>{
+router.get('/view-report',verifyLogin,async(req,res)=>{
 var bookingHistory = await adminHelpers.findAllBookingHistory()
 res.render('admin/view-report',{admin:true,'adminDetails':req.session.admin,bookingHistory})
 })
 router.post('/view-report',async(req,res)=>{
-  console.log(req.body)
   var bookingHistory = await adminHelpers.filterOrdersByDate(req.body)
   res.render('admin/view-filterOrders',{admin:true,'adminDetails':req.session.admin,bookingHistory})
   })

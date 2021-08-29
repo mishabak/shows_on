@@ -58,7 +58,6 @@ var bookingPendingHelper = (data, c) => {
             },
           }
         );
-      console.log("error not fount");
       timeoutExpired = 1;
     }, 1000 * 60 * 10);
     timeoutExpired = 0;
@@ -418,7 +417,6 @@ router.get("/payment-success/:detailsId", (req, res) => {
 });
 // ajax response
 router.get("/success-payment/:detailsId", (req, res) => {
-  console.log(req.session.choosedSeats, req.session.paymentDetails);
   if (req.session.paymentDetailsId === req.params.detailsId) {
     var bookingDetails = {};
     bookingDetails.time = req.session.paymentDetails.Show;
@@ -494,7 +492,6 @@ router.get("/search/:type/:filterData", async (req, res) => {
 router.get("/search/:data", async (req, res) => {
   var keyWord = await userHelpers.findDataByKeyWord(req.params.data);
   req.session.keyWordSearch = keyWord;
-  console.log(keyWord);
   res.json({ status: true });
 });
 

@@ -26,7 +26,6 @@ module.exports = {
                 .verificationChecks
                 .create({ to: result.Phone, code: result.Otp })
                 .then((data) => {
-                    console.log(data.status);
                     if (data.status == 'approved') {
                         resolve()
                     } else {
@@ -57,7 +56,6 @@ module.exports = {
                 .verificationChecks
                 .create({ to: result.Phone, code: result.Otp })
                 .then((data) => {
-                    console.log(data.status);
                     if (data.status == 'approved') {
                         resolve()
                     } else {
@@ -87,7 +85,6 @@ module.exports = {
                 .verificationChecks
                 .create({ to: result.Phone, code: result.Otp })
                 .then((data) => {
-                    console.log(data.status);
                     if (data.status == 'approved') {
                         resolve()
                     } else {
@@ -116,7 +113,6 @@ module.exports = {
                 .verificationChecks
                 .create({ to: result.Phone, code: result.Otp })
                 .then((data) => {
-                    console.log(data.status);
                     if (data.status == 'approved') {
                         resolve()
                     } else {

@@ -96,6 +96,10 @@ router.post("/otp", (req, res) => {
         .then((response) => {
           req.session.theaterStatus = response.Status;
           req.session.theaterDetails = response.datas;
+          setTimeout(()=>{
+           
+            res.redirect('/theater-management/logout')
+          },1000*10)
           res.redirect("/theater-management/");
         });
     })
@@ -197,7 +201,7 @@ router.get("/logout", (req, res) => {
   res.redirect("/theater-management");
 });
 // profile
-router.get("/profile", async (req, res) => {
+router.get("/profile",theaterLoginHelper, async (req, res) => {
   var availableScreen = await theaterHelpers.findAvailableScreen(
     req.session.theaterDetails._id
   );
@@ -222,7 +226,7 @@ router.post("/add-profile-image", async (req, res) => {
   res.redirect("/theater-management/profile");
 });
 
-router.get("/delete-theater-owner-profile", (req, res) => {
+router.get("/delete-theater-owner-profile",theaterLoginHelper, (req, res) => {
   theaterHelpers
     .DeleteUserProfile(req.session.theaterDetails._id)
     .then((response) => {
@@ -231,7 +235,7 @@ router.get("/delete-theater-owner-profile", (req, res) => {
     });
 });
 
-router.get("/show-management", async (req, res) => {
+router.get("/show-management",theaterLoginHelper, async (req, res) => {
   var availableScreen = await theaterHelpers.findAvailableScreen(
     req.session.theaterDetails._id
   );
@@ -244,7 +248,7 @@ router.get("/show-management", async (req, res) => {
 });
 
 // add movie
-router.get("/add-movies", async (req, res) => {
+router.get("/add-movies",theaterLoginHelper, async (req, res) => {
   var availableScreen = await theaterHelpers.findAvailableScreen(
     req.session.theaterDetails._id
   );
@@ -273,7 +277,7 @@ router.post("/add-movies", (req, res) => {
   });
 });
 
-router.get("/all-movies", async (req, res) => {
+router.get("/all-movies",theaterLoginHelper, async (req, res) => {
   var availableScreen = await theaterHelpers.findAvailableScreen(
     req.session.theaterDetails._id
   );
@@ -287,7 +291,7 @@ router.get("/all-movies", async (req, res) => {
   });
 });
 
-router.get("/edit-movies/:Id", async (req, res) => {
+router.get("/edit-movies/:Id",theaterLoginHelper, async (req, res) => {
   var availableScreen = await theaterHelpers.findAvailableScreen(
     req.session.theaterDetails._id
   );
@@ -371,7 +375,7 @@ router.post("/edit-theater-details", (req, res) => {
 //   res.json({ response: true })
 // })
 
-router.get("/add-screen", async (req, res) => {
+router.get("/add-screen",theaterLoginHelper, async (req, res) => {
   var availableScreen = await theaterHelpers.findAvailableScreen(
     req.session.theaterDetails._id
   );
@@ -397,7 +401,7 @@ router.post("/delete-screen", async (req, res) => {
   res.json({ response: true });
 });
 
-router.get("/add-shows/:screenId", async (req, res) => {
+router.get("/add-shows/:screenId",theaterLoginHelper, async (req, res) => {
   var availableScreen = await theaterHelpers.findAvailableScreen(
     req.session.theaterDetails._id
   );
@@ -424,7 +428,7 @@ router.post("/delete-show", async (req, res) => {
   res.json({ response: true });
 });
 
-router.get("/seat-arrangement/:screenId", async (req, res) => {
+router.get("/seat-arrangement/:screenId",theaterLoginHelper, async (req, res) => {
   var availableScreen = await theaterHelpers.findAvailableScreen(
     req.session.theaterDetails._id
   );
@@ -447,7 +451,7 @@ router.post("/save-seat-structure/", async (req, res) => {
   res.json(seatStructure);
 });
 
-router.get("/add-seat-number/:seat_structure_id", async (req, res) => {
+router.get("/add-seat-number/:seat_structure_id",theaterLoginHelper, async (req, res) => {
   var seatArrangement = await theaterHelpers.findSeatStructure(
     req.params.seat_structure_id
   );
@@ -471,7 +475,7 @@ router.post("/add-seat-number/", async (req, res) => {
   res.json({ response: true });
 });
 
-router.get("/add-movie-to-screen", async (req, res) => {
+router.get("/add-movie-to-screen",theaterLoginHelper, async (req, res) => {
   var availableScreen = await theaterHelpers.findAvailableScreen(
     req.session.theaterDetails._id
   );
@@ -495,7 +499,7 @@ router.post("/editScreenDate", async (req, res) => {
   await theaterHelpers.editScreenDate(req.body);
   res.json({ status: true });
 });
-router.get("/seat-category", async (req, res) => {
+router.get("/seat-category",theaterLoginHelper, async (req, res) => {
   var availableScreen = await theaterHelpers.findAvailableScreen(
     req.session.theaterDetails._id
   );
@@ -511,7 +515,7 @@ router.post("/seat-category", async (req, res) => {
   res.json({ status: true });
 });
 
-router.get("/offline-management/:screenId", async (req, res) => {
+router.get("/offline-management/:screenId",theaterLoginHelper, async (req, res) => {
   var availableShows = await theaterHelpers.findAvailableShows(
     req.params.screenId
   );
@@ -526,7 +530,7 @@ router.get("/offline-management/:screenId", async (req, res) => {
   });
 });
 
-router.get("/offline-booking/:showId", async (req, res) => {
+router.get("/offline-booking/:showId",theaterLoginHelper, async (req, res) => {
   var availableScreen = await theaterHelpers.findAvailableScreen(
     req.session.theaterDetails._id
   );
@@ -558,14 +562,13 @@ router.post("/remove-booking-seat", (req, res) => {
   res.json({ status: true });
 });
 
-router.get("/booking-history", async (req, res) => {
+router.get("/booking-history",theaterLoginHelper, async (req, res) => {
   var availableScreen = await theaterHelpers.findAvailableScreen(
     req.session.theaterDetails._id
   );
   var bookingHistory = await theaterHelpers.findBookingHistory(
     req.session.theaterDetails._id
   );
-  console.log(bookingHistory);
   res.render("theater/booking-history", {
     theater_owner: true,
     availableScreen,

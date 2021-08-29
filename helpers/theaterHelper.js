@@ -61,7 +61,6 @@ module.exports = {
         .get()
         .collection(collections.THEATER_COLLECTION)
         .insertOne(details);
-      console.log(data);
       if (data) {
         response.datas = data.ops[0];
         response.Status = true;
@@ -130,7 +129,6 @@ module.exports = {
   },
   addtheaterProfile: (data) => {
     return new Promise(async (resolve, reject) => {
-      console.log("errrr", data);
       await db
         .get()
         .collection(collections.THEATER_COLLECTION)

@@ -74,7 +74,6 @@ module.exports = {
         .findOne({ Email: data.Email });
       if (user) {
         bcrypt.compare(data.Password, user.Password).then((status) => {
-          console.log("dfdfdfdfdfdfdf", status);
           if (status) {
             if (!user.Block) {
               details.Details = user;
@@ -281,7 +280,6 @@ module.exports = {
           },
         ])
         .toArray();
-      console.log(details);
       resolve(details);
     });
   },
@@ -478,7 +476,6 @@ module.exports = {
           },
         ])
         .toArray();
-      console.log(details);
       resolve(details[0]);
     });
   },
@@ -506,7 +503,6 @@ module.exports = {
         .collection(collections.BOOKING_HISTORY_COLLECTION)
         .find({ userId: ObjectId(data) })
         .toArray();
-      console.log(details);
       resolve(details);
     });
   },
@@ -622,7 +618,6 @@ module.exports = {
           },
         ])
         .toArray();
-      console.log(details);
       resolve(details);
     });
   },
