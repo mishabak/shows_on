@@ -18,6 +18,8 @@ module.exports = {
                       reject()
                   }
               })
+          }else{
+            reject()  
           }
         })
     },

@@ -34,7 +34,7 @@ router.post('/login', async (req, res) => {
   }).catch(() => {
     req.session.adminLoginError = true
     req.session.Error = true
-    res.redirect('/admin/login')
+    res.redirect('/admin')
   })
 })
 
