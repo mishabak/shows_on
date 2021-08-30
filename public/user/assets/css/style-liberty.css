@@ -14982,7 +14982,7 @@ header.nav-fixed {
 @media (max-width:600px) {
 
   .w3l-main-slider .banner-view {
-    min-height: 360px;
+    min-height: 280px;/*add changes*/
   }
 
   .w3l-main-slider .banner-info {
@@ -15012,7 +15012,7 @@ header.nav-fixed {
     display: none;
   }
   .w3l-main-slider .banner-view {
-    min-height:340px;
+    min-height:220px; /*add changes*/
   }
 }
 
@@ -15021,7 +15021,7 @@ header.nav-fixed {
     font-size: 24px;
   }
   .w3l-main-slider .banner-view {
-    min-height:300px;
+    min-height:170px;/*add changes*/
   }
 }
 

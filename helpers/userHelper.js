@@ -7,6 +7,11 @@ const {
   AssetVersionList,
 } = require("twilio/lib/rest/serverless/v1/service/asset/assetVersion");
 const { SCREEN_COLLECTION } = require("../config/collection");
+const Razorpay = require('razorpay')
+  var instance = new Razorpay({
+    key_id:process.env.razorpay_Key_id,
+    key_secret:process.env.razorpay_Key_secret,
+  });
 
 module.exports = {
   compareUserDetails: (data) => {
