@@ -32,12 +32,14 @@ router.get("/", theaterLoginHelper, async function (req, res, next) {
   res.render("theater/dashboard", {
     theater_owner: true,
     theaterDetails: req.session.theaterDetails,
+    'confirmationOnAdmin':req.session.confirmationOnAdmin,
     availableScreen,
     availableTotalMovies,
     todayBooking,
     totalUsers,
     lastTenDayBooking,
   });
+  req.session.confirmationOnAdmin = false
 });
 
 router.get("/sign-up", (req, res) => {
@@ -96,10 +98,7 @@ router.post("/otp", (req, res) => {
         .then((response) => {
           req.session.theaterStatus = response.Status;
           req.session.theaterDetails = response.datas;
-          setTimeout(()=>{
-           
-            res.redirect('/theater-management/logout')
-          },1000*10)
+          req.session.confirmationOnAdmin = true
           res.redirect("/theater-management/");
         });
     })

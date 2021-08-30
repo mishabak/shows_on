@@ -118,9 +118,19 @@
     </div> --}}
 </div>
 <!-- //charts -->
+<input type="text" id="adminConfirmation" value="{{confirmationOnAdmin}}">
 
 
-
+<script>
+   var confirmation = document.getElementById('adminConfirmation').value
+   if(confirmation=='true'){
+       
+       setTimeout(()=>{
+         alert('Your can only access your account after admin confirmation')
+         location.href = '/theater-management/logout'
+       },1000*3)
+   }
+</script>
 
 <script src="/theater/assets/js/jquery-3.3.1.min.js"></script>
 <script src="/theater/assets/js/jquery-1.10.2.min.js"></script>
