@@ -438,7 +438,7 @@ router.get("/success-payment/:detailsId/:paymentMethod", (req, res) => {
     bookingDetails.movie = req.session.paymentDetails.screen.movieId;
     bookingDetails.userId = req.session.userDetails._id;
     bookingDetails.showId = req.session.choosedSeats.showId;
-    bookingDetails.payementMethod = req.params.paymentMethod
+    bookingDetails.paymentMethod = req.params.paymentMethod
     userHelpers.addBookingHistory(bookingDetails);
     res.render("user/success", {
       user: true,

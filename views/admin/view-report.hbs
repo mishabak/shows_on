@@ -34,6 +34,7 @@
                 <th>Seats</th>
                 <th>Date</th>
                 <th> Price</th>
+                <th> Payment method</th>
 
             </tr>
         </thead>
@@ -46,6 +47,7 @@
                 <td>{{#each seat}}{{this}}&nbsp;, {{/each}}</td>
                 <td>{{this.date}}</td>
                 <td>Rs.{{this.price}}</td>
+                <td>{{this.paymentMethod}}</td>
 
             </tr>
             {{/each}}
