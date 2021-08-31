@@ -641,4 +641,34 @@ module.exports = {
      resolve(details)
     });
   },
+  generateRazorpay: (orderId, total) => {
+    return new Promise((resolve, reject) => {
+      var options = {
+        amount: total * 100,  // amount in the smallest currency unit
+        currency: "INR",
+        receipt: "" + orderId
+      };
+      instance.orders.create(options, function (err, order) {
+        var data = {}
+        data.order = order
+        data.method = 'Razorpay'
+        console.log(data);
+        resolve(data)
+      });
+    })
+  },
+  verifyPayment: (details) => {
+    return new Promise((resolve, reject) => {
+      const crypto = require('crypto');
+      let hmac = crypto.createHmac('sha256', 'KgFuTsygNbWmya270UonrgBD');
+      hmac.update(details['payment[razorpay_order_id]'] + '|' + details['payment[razorpay_payment_id]']);
+      hmac = hmac.digest('hex')
+      if (hmac == details['payment[razorpay_signature]']) {
+          resolve(hmac)
+      } else {
+        reject()
+      }
+    })
+  },
+
 };

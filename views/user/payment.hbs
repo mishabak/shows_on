@@ -96,8 +96,8 @@
                   $.ajax({
                     url: '/payment-success/'+details.id,
                     method: 'get',
-                    success: (response) => {
-                   location.href= '/success-payment/'+details.id
+                    success: (data) => {
+                   location.href= '/success-payment/'+details.id+'/'+response
                     }
                   })
                 })
@@ -106,12 +106,66 @@
               })
             }
           }).render('#paypal-button-container');
-        } else if (response === 'Razorpay') {
+        } else if (response.method === 'Razorpay') {
+          RazorpayPayment(response)
 
         }else {
           location.href ='/booking-movie/'+response
         }
 
+      }
+    })
+  }
+   function RazorpayPayment(user) {
+    var options = {
+      "key": "rzp_test_IYfuNTa04hHPJG", // Enter the Key ID generated from the Dashboard
+      "amount": user.order.amount, // Amount is in currency subunits. Default currency is INR. Hence, 50000 refers to 50000 paise
+      "currency": "INR",
+      "name": "Online store",
+      "description": "Test Transaction",
+      "image": "https://example.com/your_logo",
+      "order_id": user.order.id, //This is a sample Order ID. Pass the `id` obtained in the response of Step 1
+      "handler": function (response) {
+        // alert(response.razorpay_payment_id);
+        // alert(response.razorpay_order_id);
+        // alert(response.razorpay_signature);
+        verifyPayment(response,user)
+      },
+      "prefill": {
+        "name": "Gaurav Kumar",
+        "email": "gaurav.kumar@example.com",
+        "contact": "9999999999"
+      },
+      "notes": {
+        "address": "Razorpay Corporate Office"
+      },
+      "theme": {
+        "color": "#3399cc"
+      },
+    }
+    var rzp1 = new Razorpay(options);
+    rzp1.open();
+  }
+  function verifyPayment(payment,order) {
+    $.ajax({
+      url: '/verify-payment',
+      method: 'post',
+      data: {
+        payment,
+        order
+      },
+      success: (response) => {
+        if (response===payment.razorpay_signature) {
+           $.ajax({
+                    url: '/payment-success/'+response,
+                    method: 'get',
+                    success: (response) => {
+                   location.href= '/success-payment/'+payment.razorpay_signature+'/'+order.method
+                    }
+                  })
+        } else {
+          alert('Payment failed')
+        }
       }
     })
   }

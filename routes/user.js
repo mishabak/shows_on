@@ -391,15 +391,17 @@ router.get("/payment", paymentPage, userLoginHelper, async (req, res) => {
   req.session.paymentPage = false; //login validation
 });
 
-router.post("/payment", (req, res) => {
+router.post("/payment", async(req, res) => {
   var response = null;
   if (timeoutExpired === 0) {
     if (req.body.payment_method === "Paypal") {
       response = "Paypal";
       res.json(response);
     } else if (req.body.payment_method === "Razorpay") {
-      response = "Razorpay";
-      res.json(response);
+      var userId = req.session.userDetails._id
+     var totalAmount = req.session.paymentDetails.totalAmount
+     var details = await userHelpers.generateRazorpay(userId,totalAmount)
+      res.json(details);
     }
   } else {
     response = req.session.paymentDetails.screen.movieId;
@@ -408,6 +410,13 @@ router.post("/payment", (req, res) => {
     req.session.choosedSeats = null;
   }
 });
+router.post('/verify-payment',(req,res)=>{
+   userHelpers.verifyPayment(req.body).then((data)=>{
+      res.json(data)
+   }).catch(()=>{
+       res.json({response:false})
+   })
+})
 
 // ajax get method for payment
 router.get("/payment-success/:detailsId", (req, res) => {
@@ -416,7 +425,7 @@ router.get("/payment-success/:detailsId", (req, res) => {
   res.json({ status: true });
 });
 // ajax response
-router.get("/success-payment/:detailsId", (req, res) => {
+router.get("/success-payment/:detailsId/:paymentMethod", (req, res) => {
   if (req.session.paymentDetailsId === req.params.detailsId) {
     var bookingDetails = {};
     bookingDetails.time = req.session.paymentDetails.Show;
@@ -429,6 +438,7 @@ router.get("/success-payment/:detailsId", (req, res) => {
     bookingDetails.movie = req.session.paymentDetails.screen.movieId;
     bookingDetails.userId = req.session.userDetails._id;
     bookingDetails.showId = req.session.choosedSeats.showId;
+    bookingDetails.payementMethod = req.params.paymentMethod
     userHelpers.addBookingHistory(bookingDetails);
     res.render("user/success", {
       user: true,
