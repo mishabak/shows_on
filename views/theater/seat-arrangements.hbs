@@ -3,9 +3,10 @@
 
     <div style="  display: flex; flex-direction: column; ">
         <div style="display: flex; flex-direction: row;justify-content: space-between;">
-            
+            {{#if seatLayout._id}}
             <button onclick="arrangeSeatNumber('{{seatLayout._id}}')" class="btn btn-success m-2">Arrange Seat
                 Number</button>
+                {{/if}}
                 <h2 style="text-align: center; color: white;">{{screen.Screen}}</h2>
             <button onclick="saveSeatArrangement('{{screen._id}}')" class="btn btn-info m-2">Save Change </button>
         </div>

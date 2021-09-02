@@ -1,3 +1,8 @@
+<style>
+    .error{
+        min-height: 0%;
+    }
+</style>
 <div class="row">
     <div class="col-12">
         <section style="display: flex; justify-content: center;margin-top: 90px">
@@ -37,8 +42,25 @@
                     <form action="/theater-management/add-shows" method="POST" id="add-shows">
                         <div class="row">
                             <div class="col-8">
-                                <input type="text" class="form-control" required name="Show" id="new-shows"
-                                    placeholder="12:00 pm">
+                                <div style=" display: flex; justify-content: center; " >
+                                    <div style="width: 160px;border: solid rgb(165, 165, 165) 1px; display: flex; border-radius: 3px; flex-direction: row;">
+                                        <input style="width: 50px; border: none; text-align: center;" name="Hour" class="form-control" placeholder="- -" type="text">
+                                        <h4>:</h4>
+                                    <input style="width: 50px; border: none;  text-align: center;" name="Minute" placeholder="- -" class="form-control" type="text">
+                                    <input style="width: 50px; border: none;  text-align: center;" name="Format" placeholder="- -" class="form-control" type="text">
+                                    </div>
+                                    
+                                </div>
+                                 <div style=" display: flex; justify-content: center; " >
+                                    <div style="width: 190px; display: flex; border-radius: 3px; flex-direction: row;">
+                                    <label style="width: 60px; font-size: 9px; font-weight: bold; display: none;" id="Hour-error" class="error" for="Hour">Enter hour</label>
+                                    <label style="width: 60px; font-size: 9px;font-weight: bold; display: none;" id="Minute-error" class="error" for="Minute">Enter minute</label> &nbsp;
+                                    <label style="width: 60px; font-size: 9px;font-weight: bold; display: none;" id="Format-error" class="error" for="Format">Enter period</label>
+                                    </div>
+                                    
+                                </div>
+                                {{!-- <input type="time" class="form-control" required name="Show" id="new-shows"
+                                    placeholder="12:00 pm"> --}}
                             </div>
                             <div class="col-4">
                                 <button type="submit" class="btn btn-info">Add Shows</button>

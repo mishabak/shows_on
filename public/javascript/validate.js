@@ -308,6 +308,36 @@ $(document).ready(()=>{
             paymentMethod()
         }
     })
+    $('#add-shows').validate({
+        rules:{
+            Hour:{
+                required:true,
+                minlength: 1,
+                maxlength:2
+            },
+            Minute:{
+                required:true,
+                minlength:1,
+                maxlength:2
+            },
+            Format:{
+                required:true,
+                text:true
+            }
+            
+        },
+        messages:{
+           Hour:{
+               required:'Enter Hour'
+           },
+           Minute:{
+               required:'Enter minute'
+           },
+           Format:{
+               required:'Enter period'
+           }
+        }
+    })
 
     
 })
